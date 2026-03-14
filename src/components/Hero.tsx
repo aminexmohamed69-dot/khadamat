@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <div className="bg-white">
       {/* Premium Hero Section with Background */}
-      <div className="relative h-screen bg-cover bg-center overflow-hidden" style={{backgroundImage: 'url(/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg)'}}>
+      <div className="relative h-[80vh] bg-cover bg-center overflow-hidden" style={{backgroundImage: 'url(/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg)'}}>
         {/* Dark Overlay with Blur */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/85 backdrop-blur-sm"></div>
         
