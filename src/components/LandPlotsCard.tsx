@@ -25,12 +25,19 @@ export default function LandPlotsCard() {
   const isFormValid = formData.plotNumber.trim() !== '';
 
   const handleSubmit = () => {
-    if (!isFormValid) {
+    if (activeTab === 'booking' && !isFormValid) {
       alert('الرجاء إدخال رقم البقعة');
       return;
     }
 
-    const message = `السلام عليكم\nأرغب في حجز بقعة\n\nالطابق: ${formData.floor}\nالنوع: ${formData.type}\nرقم البقعة: ${formData.plotNumber}`;
+    let message = '';
+    if (activeTab === 'booking') {
+      message = `السلام عليكم\nأرغب في حجز بقعة\n\nالطابق: ${formData.floor}\nالنوع: ${formData.type}\nرقم البقعة: ${formData.plotNumber}`;
+    } else {
+      const tabLabel = tabs.find(t => t.id === activeTab)?.label || '';
+      message = `السلام عليكم\nأنا مهتم بمشروع البقع الأرضية\nالقسم: ${tabLabel}`;
+    }
+
     const whatsappUrl = `https://wa.me/212702060323?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };

@@ -24,12 +24,19 @@ export default function ApartmentsCard() {
   const isFormValid = formData.apartmentNumber.trim() !== '';
 
   const handleSubmit = () => {
-    if (!isFormValid) {
+    if (activeTab === 'booking' && !isFormValid) {
       alert('الرجاء إدخال رقم الشقة');
       return;
     }
 
-    const message = `السلام عليكم\nأرغب في حجز شقة\n\nالطابق: ${formData.floor}\nرقم الشقة: ${formData.apartmentNumber}`;
+    let message = '';
+    if (activeTab === 'booking') {
+      message = `السلام عليكم\nأرغب في حجز شقة\n\nالطابق: ${formData.floor}\nرقم الشقة: ${formData.apartmentNumber}`;
+    } else {
+      const tabLabel = tabs.find(t => t.id === activeTab)?.label || '';
+      message = `السلام عليكم\nأنا مهتم بمشروع الشقق السكنية\nالقسم: ${tabLabel}`;
+    }
+
     const whatsappUrl = `https://wa.me/212702060323?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
