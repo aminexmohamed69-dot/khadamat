@@ -1,5 +1,5 @@
 import { Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useState } from 'react'; // Redundant push to ensure Vercel update
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
