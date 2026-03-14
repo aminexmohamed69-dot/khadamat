@@ -7,8 +7,20 @@ const images = [
   '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
 ];
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () => void }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleRevealClick = () => {
+    if (onRevealOther) {
+      onRevealOther();
+      setTimeout(() => {
+        const element = document.getElementById('other-projects-content');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    }
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -29,13 +41,21 @@ export default function ProjectsSection() {
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="p-8 pb-0 flex flex-row-reverse justify-between items-end">
-            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-base font-bold shadow-lg">
+          <div className="p-10 pb-12 flex flex-row-reverse justify-between items-center bg-gray-50/50">
+            <div className="flex items-center gap-6">
+              <button 
+                onClick={handleRevealClick}
+                className="text-blue-600 font-bold hover:text-blue-800 transition-colors text-lg border-b-2 border-blue-600/30 hover:border-blue-600"
+              >
+                اضغط للمزيد
+              </button>
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                مشروع تجزئة وإقامة النجمة – تيزنيت
+              </h3>
+            </div>
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg">
               جديد
             </div>
-            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 max-w-2xl text-right leading-tight mb-2">
-              مشروع تجزئة وإقامة النجمة – تيزنيت
-            </h3>
           </div>
 
           <div className="relative">

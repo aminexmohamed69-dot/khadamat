@@ -7,13 +7,17 @@ import ProjectDetails from './components/ProjectDetails';
 
 function App() {
   const [showDetails, setShowDetails] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <ProjectsSection />
+      <ProjectsSection onRevealOther={() => setIsRevealed(true)} />
       <Hero />
-      <InteractiveProjectBox onShowDetails={() => setShowDetails(true)} />
+      <InteractiveProjectBox 
+        isRevealed={isRevealed} 
+        onShowDetails={() => setShowDetails(true)} 
+      />
       {showDetails && <ProjectDetails />}
     </div>
   );
