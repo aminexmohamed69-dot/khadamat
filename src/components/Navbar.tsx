@@ -11,10 +11,13 @@ export default function Navbar() {
           <img src="/image-removebg-preview.png" alt="Tozdaght Logo" className="h-14 sm:h-20 w-auto" />
         </div>
 
-        <div className="absolute inset-0 flex justify-center items-center pointer-events-none px-16 sm:px-4">
+        <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none px-16 sm:px-4">
           <h1 className="text-lg sm:text-2xl lg:text-3xl font-black text-gray-900 leading-tight text-center pointer-events-auto" style={{fontFamily: 'Cairo, sans-serif'}}>
             شركة توزدغت العقارية
           </h1>
+          <p className="text-[10px] sm:text-xs lg:text-sm font-bold text-blue-600 mt-1 text-center pointer-events-auto" style={{fontFamily: 'Cairo, sans-serif'}}>
+            استثمر بثقة… نحن رفيقكم في العقار
+          </p>
         </div>
 
         <div className="flex items-center justify-end z-10 w-1/4">
