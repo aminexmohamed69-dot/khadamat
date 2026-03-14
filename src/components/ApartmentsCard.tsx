@@ -17,6 +17,7 @@ export default function ApartmentsCard() {
   const progressImages = [
     '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
     '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
+    '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg',
   ];
 
   const tabs = [
