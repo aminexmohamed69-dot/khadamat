@@ -41,7 +41,7 @@ export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () 
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="p-10 pb-12 flex flex-row-reverse justify-between items-center bg-gray-50/50">
+          <div className="p-10 pb-12 flex flex-row justify-between items-center bg-gray-50/50">
             <div className="flex items-center gap-6">
               <button 
                 onClick={handleRevealClick}
