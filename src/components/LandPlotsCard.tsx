@@ -42,16 +42,16 @@ export default function LandPlotsCard() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto">
-        <div className="flex">
+      <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto no-scrollbar">
+        <div className="flex min-w-full">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base ${
+              className={`flex-1 px-4 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base border-b-3 ${
                 activeTab === tab.id
-                  ? 'text-amber-600 border-b-3 border-amber-600 bg-white'
-                  : 'text-gray-600 hover:text-amber-500 hover:bg-gray-100'
+                  ? 'text-amber-600 border-amber-600 bg-white'
+                  : 'text-gray-600 border-transparent hover:text-amber-500 hover:bg-gray-100'
               }`}
             >
               {tab.label}
@@ -107,10 +107,10 @@ export default function LandPlotsCard() {
           )}
 
           {/* Horizontal Form Layout */}
-          <div className="flex flex-col lg:flex-row gap-4 items-end">
+          <div className={`flex flex-col gap-6 items-center ${activeTab === 'booking' ? 'lg:flex-row lg:items-end' : 'justify-center py-8'}`}>
             {activeTab === 'booking' && (
               <>
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <label className="block text-sm font-bold text-gray-700 mb-3">
                     نوع الطابق
                   </label>
@@ -125,7 +125,7 @@ export default function LandPlotsCard() {
                   </select>
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <label className="block text-sm font-bold text-gray-700 mb-3">
                     نوع البقعة
                   </label>
@@ -139,7 +139,7 @@ export default function LandPlotsCard() {
                   </select>
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <label className="block text-sm font-bold text-gray-700 mb-3">
                     رقم البقعة
                   </label>
@@ -157,7 +157,11 @@ export default function LandPlotsCard() {
             {/* Always visible Confirmation Button */}
             <button
               onClick={handleSubmit}
-              className={`px-10 py-3 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap ${activeTab === 'booking' && !isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}`}
+              className={`bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap ${
+                activeTab === 'booking' 
+                  ? `px-10 py-3 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}` 
+                  : 'px-20 py-5 text-2xl animate-in fade-in zoom-in duration-500 mx-auto'
+              }`}
             >
               تأكيد الحجز
             </button>
