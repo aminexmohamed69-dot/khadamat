@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function ApartmentsCard() {
   const [activeTab, setActiveTab] = useState('design');
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     floor: '1',
     apartmentNumber: '',

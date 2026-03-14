@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-export default function InteractiveProjectBox({ onShowDetails }) {
+export default function InteractiveProjectBox({ onShowDetails }: { onShowDetails: () => void }) {
   const [showArrow, setShowArrow] = useState(false);
 
   const handleClick = () => {

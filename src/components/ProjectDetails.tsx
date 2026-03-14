@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { X } from 'lucide-react';
+
 import LandPlotsCard from './LandPlotsCard';
 import ApartmentsCard from './ApartmentsCard';
 

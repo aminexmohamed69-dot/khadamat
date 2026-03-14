@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProjectsSection from './components/ProjectsSection';
 import InteractiveProjectBox from './components/InteractiveProjectBox';
@@ -9,8 +10,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Hero />
+      <Navbar />
       <ProjectsSection />
+      <Hero />
       <InteractiveProjectBox onShowDetails={() => setShowDetails(true)} />
       {showDetails && <ProjectDetails />}
     </div>

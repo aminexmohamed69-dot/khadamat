@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 export default function LandPlotsCard() {
   const [activeTab, setActiveTab] = useState('design');
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    floorType: 'R+2',
+    floor: 'R+2',
     type: 'سكنية',
     plotNumber: '',
   });
