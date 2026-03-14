@@ -8,10 +8,8 @@ export default function Hero() {
     <div className="bg-white">
       <nav className="border-b border-gray-200 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2 order-2 lg:order-1">
-            <div className="bg-blue-600 text-white rounded-lg p-2">
-              <span className="font-bold text-sm">خدمات البناء</span>
-            </div>
+          <div className="flex items-center gap-3 order-2 lg:order-1">
+            <img src="/image-removebg-preview.png" alt="Logo" className="h-14 w-auto" />
           </div>
 
           <button
