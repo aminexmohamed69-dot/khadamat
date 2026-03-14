@@ -2,10 +2,17 @@ import { useState } from 'react';
 
 export default function ApartmentsCard() {
   const [activeTab, setActiveTab] = useState('design');
+  const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
     floor: '1',
     apartmentNumber: '',
   });
+
+  const apartmentImages = [
+    '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
+    '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
+    '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg',
+  ];
 
   const tabs = [
     { id: 'design', label: 'تصميم العمارة' },
@@ -56,17 +63,43 @@ export default function ApartmentsCard() {
       <div className="p-8 lg:p-12">
         {activeTab === 'booking' && (
           <div className="animate-in fade-in zoom-in duration-500 mb-8">
-            {/* Gallery Photos */}
+            {/* Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              <div className="bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة تصميم الشقة 1</span>
-              </div>
-              <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة تصميم الشقة 2</span>
-              </div>
-              <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة تصميم الشقة 3</span>
-              </div>
+              {apartmentImages.map((img, index) => (
+                <div
+                  key={index}
+                  onClick={() => setSelectedImage(img)}
+                  className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer h-48"
+                >
+                  <img
+                    src={img}
+                    alt={`صورة الشقة ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Image Modal */}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-emerald-400 transition"
+              >
+                ✕
+              </button>
+              <img
+                src={selectedImage}
+                alt="صورة موسعة"
+                className="w-full rounded-xl shadow-2xl"
+              />
             </div>
           </div>
         )}

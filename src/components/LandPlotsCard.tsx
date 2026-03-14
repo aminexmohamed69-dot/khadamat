@@ -2,11 +2,18 @@ import { useState } from 'react';
 
 export default function LandPlotsCard() {
   const [activeTab, setActiveTab] = useState('design');
+  const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
-    floor: 'R+2',
+    floorType: 'R+2',
     type: 'سكنية',
     plotNumber: '',
   });
+
+  const plotImages = [
+    '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
+    '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
+    '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
+  ];
 
   const tabs = [
     { id: 'design', label: 'تصميم التجزئة' },
@@ -57,17 +64,43 @@ export default function LandPlotsCard() {
       <div className="p-8 lg:p-12">
         {activeTab === 'booking' && (
           <div className="animate-in fade-in zoom-in duration-500 mb-8">
-            {/* Gallery Photos */}
+            {/* Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              <div className="bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة البقعة 1</span>
-              </div>
-              <div className="bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة البقعة 2</span>
-              </div>
-              <div className="bg-gradient-to-br from-amber-600 to-amber-800 rounded-xl h-48 shadow-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center text-white font-bold text-center p-4">
-                <span>صورة البقعة 3</span>
-              </div>
+              {plotImages.map((img, index) => (
+                <div
+                  key={index}
+                  onClick={() => setSelectedImage(img)}
+                  className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105 cursor-pointer h-48"
+                >
+                  <img
+                    src={img}
+                    alt={`صورة البقعة ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Image Modal */}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-amber-400 transition"
+              >
+                ✕
+              </button>
+              <img
+                src={selectedImage}
+                alt="صورة موسعة"
+                className="w-full rounded-xl shadow-2xl"
+              />
             </div>
           </div>
         )}
@@ -141,6 +174,28 @@ export default function LandPlotsCard() {
           </div>
         )}
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-amber-400 transition"
+            >
+              ✕
+            </button>
+            <img
+              src={selectedImage}
+              alt="صورة موسعة"
+              className="w-full rounded-xl shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
 
       <style>{`
         @keyframes popIn {
