@@ -35,21 +35,21 @@ export default function ProjectsSection({
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="p-10 pb-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-gray-50/50">
-            {/* Physical Right Side: New Badge */}
-            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg shrink-0 order-1">
+          <div className="p-4 sm:p-6 flex flex-row justify-between items-center gap-4 bg-gray-50/50">
+            {/* Physical Right Side: New Badge (1st child in RTL) */}
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md shrink-0">
               جديد
             </div>
 
-            {/* Physical Left Side: Container for Button + Title */}
-            <div className="flex flex-col md:flex-row items-center gap-6 order-2">
+            {/* Physical Left Side: Container for Button + Title (2nd child in RTL) */}
+            <div className="flex flex-row items-center gap-4 sm:gap-6">
               <button 
                 onClick={onExploreProject}
-                className="text-blue-600 font-extrabold hover:text-blue-800 transition-colors text-xl border-b-2 border-blue-600/30 hover:border-blue-600 whitespace-nowrap shrink-0 order-2 md:order-2"
+                className="text-blue-600 font-extrabold hover:text-blue-800 transition-colors text-xs sm:text-base border-b-2 border-blue-600/30 hover:border-blue-600 whitespace-nowrap shrink-0 order-2"
               >
                 استكشف المشروع
               </button>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight order-3 md:order-1">
+              <h3 className="text-sm sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight order-1 whitespace-nowrap">
                 مشروع تجزئة وإقامة النجمة – تيزنيت
               </h3>
             </div>
