@@ -19,23 +19,24 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-slate-900 mb-16">
-          مشاريعنا الحالية
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            من نحن
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+        </div>
 
-        <div className="border-t-4 border-blue-600 mb-16"></div>
-
-        <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+        <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
           <div className="relative">
-            <div className="absolute top-4 right-4 z-10">
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                جديد
+            <div className="absolute top-6 right-6 z-10">
+              <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+                مشروع مميز
               </span>
             </div>
 
-            <div className="aspect-video overflow-hidden bg-slate-200 relative">
+            <div className="aspect-video overflow-hidden bg-gray-200 relative">
               {images.map((img, idx) => (
                 <img
                   key={idx}
@@ -49,14 +50,14 @@ export default function ProjectsSection() {
 
               <button
                 onClick={prevSlide}
-                className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-900 p-3 rounded-full transition z-20"
+                className="absolute right-6 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-600 hover:text-white text-gray-900 p-3 rounded-full transition z-20 shadow-lg"
               >
                 <ChevronRight size={24} />
               </button>
 
               <button
                 onClick={nextSlide}
-                className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-900 p-3 rounded-full transition z-20"
+                className="absolute left-6 top-1/2 -translate-y-1/2 bg-white hover:bg-blue-600 hover:text-white text-gray-900 p-3 rounded-full transition z-20 shadow-lg"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -66,35 +67,47 @@ export default function ProjectsSection() {
                   <button
                     key={idx}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`w-2 h-2 rounded-full transition ${
-                      idx === currentSlide ? 'bg-white' : 'bg-white/40'
+                    className={`w-3 h-3 rounded-full transition ${
+                      idx === currentSlide ? 'bg-white' : 'bg-white/50'
                     }`}
                   />
                 ))}
               </div>
             </div>
 
-            <div className="p-8 bg-gradient-to-r from-slate-50 to-white">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+            <div className="p-10 bg-gradient-to-r from-blue-50 to-white border-t border-gray-100">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
                 مشروع تجزئة وإقامة النجمة – تيزنيت
               </h3>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-4 text-slate-700">
-                  <span className="text-blue-600 font-bold text-lg">➤</span>
-                  <span>شقق سكنية بتزنيت</span>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 text-gray-700">
+                  <span className="text-blue-600 font-bold text-2xl mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold text-lg">شقق سكنية بتزنيت</p>
+                    <p className="text-gray-500 text-sm">عصرية وفاخرة</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-4 text-slate-700">
-                  <span className="text-blue-600 font-bold text-lg">➤</span>
-                  <span>فضاءات مكتبية Plateaux Bureau – تيزنيت</span>
+                <div className="flex items-start gap-4 text-gray-700">
+                  <span className="text-blue-600 font-bold text-2xl mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold text-lg">فضاءات مكتبية</p>
+                    <p className="text-gray-500 text-sm">Plateaux Bureau متطورة</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-4 text-slate-700">
-                  <span className="text-blue-600 font-bold text-lg">➤</span>
-                  <span>شقق سكنية بايت ملول</span>
+                <div className="flex items-start gap-4 text-gray-700">
+                  <span className="text-blue-600 font-bold text-2xl mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold text-lg">شقق سكنية بايت ملول</p>
+                    <p className="text-gray-500 text-sm">في موقع استراتيجي</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-4 text-slate-700">
-                  <span className="text-blue-600 font-bold text-lg">➤</span>
-                  <span>شقق سكنية بالقليعة</span>
+                <div className="flex items-start gap-4 text-gray-700">
+                  <span className="text-blue-600 font-bold text-2xl mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold text-lg">شقق سكنية بالقليعة</p>
+                    <p className="text-gray-500 text-sm">بأفضل الأسعار</p>
+                  </div>
                 </div>
               </div>
             </div>

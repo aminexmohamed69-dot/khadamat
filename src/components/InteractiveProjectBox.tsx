@@ -1,19 +1,20 @@
 export default function InteractiveProjectBox({ onShowDetails }) {
   return (
-    <section className="py-16 bg-gradient-to-b from-slate-50 to-white">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* مشاريع اخرى Box */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur-2xl opacity-25 group-hover:opacity-40 transition duration-300"></div>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition duration-500"></div>
 
-            <div className="relative bg-white backdrop-blur-sm border border-slate-200 rounded-2xl p-12 shadow-xl hover:shadow-2xl transition duration-300 group-hover:border-blue-400">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300"></div>
-
-              <div className="relative text-right">
-                <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 group-hover:text-blue-600 transition">
-                  مشاريع اخرى
+            <div className="relative bg-white rounded-2xl p-16 shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100">
+              <div className="text-center">
+                <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">
+                  مشاريع أخرى
                 </h3>
+                <p className="text-gray-600 text-lg mb-8">
+                  استكشف مشاريعنا الأخرى والخدمات المتميزة
+                </p>
               </div>
             </div>
           </div>
@@ -22,7 +23,7 @@ export default function InteractiveProjectBox({ onShowDetails }) {
           <div className="flex justify-center">
             <button
               onClick={onShowDetails}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-3 rounded-lg font-bold text-lg transition transform hover:scale-105"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-16 py-4 rounded-full font-bold text-lg transition transform hover:scale-105 hover:shadow-xl shadow-lg"
             >
               تحقق
             </button>
