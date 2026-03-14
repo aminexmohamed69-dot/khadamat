@@ -7,20 +7,14 @@ const images = [
   '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
 ];
 
-export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () => void }) {
+export default function ProjectsSection({ 
+  onRevealOther,
+  onExploreProject
+}: { 
+  onRevealOther?: () => void;
+  onExploreProject?: () => void;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handleRevealClick = () => {
-    if (onRevealOther) {
-      onRevealOther();
-      setTimeout(() => {
-        const element = document.getElementById('other-projects-content');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
-    }
-  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -31,9 +25,9 @@ export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () 
   };
 
   return (
-    <section className="py-20 bg-gray-50" id="projects-current">
+    <section className="pt-10 pb-20 bg-gray-50" id="projects-current">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-5xl font-bold text-gray-900 mb-4">
             مشاريعنا الحالية
           </h2>
@@ -41,21 +35,21 @@ export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () 
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="p-10 pb-12 flex flex-col md:flex-row-reverse justify-between items-center gap-8 bg-gray-50/50">
-            {/* Right Side: New Badge */}
-            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg shrink-0">
+          <div className="p-10 pb-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-gray-50/50">
+            {/* Physical Right Side: New Badge */}
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg shrink-0 order-1">
               جديد
             </div>
 
-            {/* Left Side: Button + Title */}
-            <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+            {/* Physical Left Side: Container for Button + Title */}
+            <div className="flex flex-col md:flex-row items-center gap-6 order-2">
               <button 
-                onClick={handleRevealClick}
-                className="text-blue-600 font-bold hover:text-blue-800 transition-colors text-lg border-b-2 border-blue-600/30 hover:border-blue-600 whitespace-nowrap shrink-0"
+                onClick={onExploreProject}
+                className="text-blue-600 font-extrabold hover:text-blue-800 transition-colors text-xl border-b-2 border-blue-600/30 hover:border-blue-600 whitespace-nowrap shrink-0 order-2 md:order-2"
               >
-                اضغط للمزيد
+                استكشف المشروع
               </button>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight order-3 md:order-1">
                 مشروع تجزئة وإقامة النجمة – تيزنيت
               </h3>
             </div>

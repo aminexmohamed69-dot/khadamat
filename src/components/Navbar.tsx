@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className="border-b border-white/20 bg-white/70 backdrop-blur-xl sticky top-0 z-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center relative">
         <div className="flex items-center gap-4 z-10 w-1/4">
-          <img src="/image-removebg-preview.png" alt="Tozdaght Logo" className="h-20 sm:h-32 w-auto drop-shadow-md hover:scale-105 transition-transform" />
+          <img src="/image-removebg-preview.png" alt="Tozdaght Logo" className="h-32 sm:h-52 w-auto drop-shadow-md hover:scale-105 transition-transform" />
         </div>
 
         <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none px-16 sm:px-4">
