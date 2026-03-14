@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+}
+
+html {
+  direction: rtl;
+}
+
+* {
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+}
+
+body {
+  direction: rtl;
+}
+
+html {
+  scroll-behavior: smooth;
+}
