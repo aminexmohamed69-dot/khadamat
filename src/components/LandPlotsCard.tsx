@@ -43,12 +43,12 @@ export default function LandPlotsCard() {
 
       {/* Tab Navigation */}
       <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto no-scrollbar">
-        <div className="flex min-w-full">
+        <div className="flex px-4">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 px-4 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base border-b-3 ${
+              className={`px-6 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base border-b-3 ${
                 activeTab === tab.id
                   ? 'text-amber-600 border-amber-600 bg-white'
                   : 'text-gray-600 border-transparent hover:text-amber-500 hover:bg-gray-100'

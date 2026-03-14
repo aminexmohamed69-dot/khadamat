@@ -13,7 +13,7 @@ export default function ProjectDetails() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           <LandPlotsCard />
           <ApartmentsCard />
         </div>
