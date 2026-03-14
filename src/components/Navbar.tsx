@@ -25,14 +25,6 @@ export default function Navbar() {
             <Menu size={24} className="text-gray-700 pointer-events-auto" />
           </button>
         </div>
-
-        <div className={`absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 lg:static lg:flex lg:gap-8 lg:bg-transparent lg:border-0 lg:backdrop-blur-none ${
-          menuOpen ? 'flex flex-col gap-4 p-4 pointer-events-auto z-50' : 'hidden'
-        }`}>
-          <h2 className="text-lg lg:text-xl xl:text-2xl font-black text-blue-600 text-center lg:text-right" style={{fontFamily: 'Cairo, sans-serif'}}>
-            مشروع تجزئة وإقامة النجمة – تيزنيت
-          </h2>
-        </div>
       </div>
     </nav>
   );
