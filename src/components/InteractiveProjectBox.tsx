@@ -1,4 +1,22 @@
+import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+
 export default function InteractiveProjectBox({ onShowDetails }) {
+  const [showArrow, setShowArrow] = useState(false);
+
+  const handleClick = () => {
+    setShowArrow(true);
+    onShowDetails();
+    
+    // Scroll to the projects details section after a short delay
+    setTimeout(() => {
+      const element = document.getElementById('project-details');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100" id="other-projects">
       <div className="max-w-4xl mx-auto px-6">
@@ -20,13 +38,21 @@ export default function InteractiveProjectBox({ onShowDetails }) {
           </div>
 
           {/* تحقق Button */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-8">
             <button
-              onClick={onShowDetails}
+              onClick={handleClick}
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-16 py-4 rounded-full font-bold text-lg transition transform hover:scale-105 hover:shadow-xl shadow-lg"
             >
               تحقق
             </button>
+
+            {/* Scroll Down Arrow */}
+            {showArrow && (
+              <div className="animate-bounce flex flex-col items-center gap-2">
+                <span className="text-sm font-semibold text-blue-600">مرر لأسفل</span>
+                <ChevronDown size={32} className="text-blue-600 animate-bounce" style={{ animationDelay: '0.2s' }} />
+              </div>
+            )}
           </div>
         </div>
       </div>
