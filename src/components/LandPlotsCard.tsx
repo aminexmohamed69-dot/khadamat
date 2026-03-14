@@ -15,12 +15,25 @@ export default function LandPlotsCard() {
     '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
   ];
 
+  const progressImages = [
+    '/New_Project_(10).png',
+    '/New_Project_(7).png',
+    '/image.png',
+  ];
+
   const tabs = [
     { id: 'design', label: 'تصميم التجزئة' },
-    { id: 'function', label: 'وظيفة البقع' },
+    { id: 'status', label: 'وضعية البقع' },
     { id: 'progress', label: 'تقدم الأشغال' },
     { id: 'booking', label: 'حجز بقعة' },
   ];
+
+  const itemLabels: Record<string, string> = {
+    design: 'التصميم',
+    status: 'الوضعية',
+    progress: 'تقدم الأشغال',
+    booking: 'الحجز'
+  };
 
   const isFormValid = formData.plotNumber.trim() !== '';
 
@@ -69,11 +82,11 @@ export default function LandPlotsCard() {
 
       {/* Content */}
       <div className="p-8 lg:p-12">
-        {activeTab === 'booking' && (
+        {(activeTab === 'booking' || activeTab === 'progress' || activeTab === 'status' || activeTab === 'design') && (
           <div className="animate-in fade-in zoom-in duration-500 mb-8">
             {/* Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              {plotImages.map((img, index) => (
+              {(activeTab === 'progress' ? progressImages : plotImages).map((img, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedImage(img)}
@@ -81,7 +94,7 @@ export default function LandPlotsCard() {
                 >
                   <img
                     src={img}
-                    alt={`صورة البقعة ${index + 1}`}
+                    alt={`صورة ${itemLabels[activeTab]} ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
