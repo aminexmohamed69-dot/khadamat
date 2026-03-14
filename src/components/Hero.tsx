@@ -41,23 +41,9 @@ export default function Hero() {
             >
               منطقة سكنية وتجارية حديثة بتصاميم عصرية
             </p>
-            <p className="text-base text-blue-200 mb-12 leading-relaxed max-w-2xl lg:ml-auto drop-shadow-md">
+            <p className="text-base text-blue-200 mb-6 leading-relaxed max-w-2xl lg:ml-auto drop-shadow-md">
               نحن نقدم مشاريع عقارية متطورة بمعايير عالمية، شقق سكنية فاخرة وفضاءات مكتبية احترافية
             </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-end">
-              <button 
-                onClick={() => scrollToSection('projects-current')}
-                className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
-              >
-                استكشف المشروع
-              </button>
-              <button 
-                onClick={() => scrollToSection('other-projects')}
-                className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
-              >
-                اطلب عرض سعر
-              </button>
-            </div>
           </div>
 
           <div className="lg:flex-1 hidden lg:block">
