@@ -83,96 +83,89 @@ export default function LandPlotsCard() {
           </div>
         )}
         
-        {/* Image Modal */}
-        {selectedImage && (
-          <div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-amber-400 transition"
-              >
-                ✕
-              </button>
-              <img
-                src={selectedImage}
-                alt="صورة موسعة"
-                className="w-full rounded-xl shadow-2xl"
-              />
-            </div>
-          </div>
-        )}
-        
-        {activeTab !== 'booking' ? (
-          <div className="text-center py-16">
-            <p className="text-gray-500 text-lg font-medium">قريباً</p>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            {/* Horizontal Form Layout */}
-            <div className="flex flex-col lg:flex-row gap-4 items-end">
-              <div className="flex-1">
-                <label className="block text-sm font-bold text-gray-700 mb-3">
-                  نوع الطابق
-                </label>
-                <select
-                  value={formData.floor}
-                  onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
-                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
-                >                  <option value="R+2">R+2</option>
-                  <option value="R+3">R+3</option>
-                  <option value="R+4">R+4</option>
-                </select>
-              </div>
-
-              <div className="flex-1">
-                <label className="block text-sm font-bold text-gray-700 mb-3">
-                  نوع البقعة
-                </label>
-                <select
-                  value={formData.type}
-                  onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+        <div className="space-y-6">
+          {/* Image Modal */}
+          {selectedImage && (
+            <div
+              className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-amber-400 transition"
                 >
-                  <option value="سكنية">سكنية</option>
-                  <option value="تجارية">تجارية</option>
-                </select>
-              </div>
-
-              <div className="flex-1">
-                <label className="block text-sm font-bold text-gray-700 mb-3">
-                  رقم البقعة
-                </label>
-                <input
-                  type="text"
-                  value={formData.plotNumber}
-                  onChange={(e) => setFormData({ ...formData, plotNumber: e.target.value })}
-                  placeholder="أدخل رقم البقعة"
-                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+                  ✕
+                </button>
+                <img
+                  src={selectedImage}
+                  alt="صورة موسعة"
+                  className="w-full rounded-xl shadow-2xl"
                 />
               </div>
+            </div>
+          )}
 
-              {/* Auto-appearing Confirmation Button */}
-              {isFormValid && (
-                <button
-                  onClick={handleSubmit}
-                  className="px-10 py-3 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl animate-in fade-in zoom-in duration-500 whitespace-nowrap"
-                >
-                  تأكيد الحجز
-                </button>
-              )}
+          {/* Horizontal Form Layout */}
+          <div className="flex flex-col lg:flex-row gap-4 items-end">
+            <div className="flex-1">
+              <label className="block text-sm font-bold text-gray-700 mb-3">
+                نوع الطابق
+              </label>
+              <select
+                value={formData.floor}
+                onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
+                className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+              >
+                <option value="R+2">R+2</option>
+                <option value="R+3">R+3</option>
+                <option value="R+4">R+4</option>
+              </select>
             </div>
 
-            {/* Info Message */}
-            {!isFormValid && (
-              <p className="text-center text-gray-500 text-sm font-medium animate-in fade-in duration-300">
-                يرجى إدخال رقم البقعة لإتمام الحجز
-              </p>
-            )}
+            <div className="flex-1">
+              <label className="block text-sm font-bold text-gray-700 mb-3">
+                نوع البقعة
+              </label>
+              <select
+                value={formData.type}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+              >
+                <option value="سكنية">سكنية</option>
+                <option value="تجارية">تجارية</option>
+              </select>
+            </div>
+
+            <div className="flex-1">
+              <label className="block text-sm font-bold text-gray-700 mb-3">
+                رقم البقعة
+              </label>
+              <input
+                type="text"
+                value={formData.plotNumber}
+                onChange={(e) => setFormData({ ...formData, plotNumber: e.target.value })}
+                placeholder="أدخل رقم البقعة"
+                className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+              />
+            </div>
+
+            {/* Always visible Confirmation Button */}
+            <button
+              onClick={handleSubmit}
+              className={`px-10 py-3 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}`}
+            >
+              تأكيد الحجز
+            </button>
           </div>
-        )}
+
+          {/* Info Message */}
+          {!isFormValid && (
+            <p className="text-center text-gray-500 text-sm font-medium animate-in fade-in duration-300">
+              يرجى إدخال رقم البقعة لإتمام الحجز
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Image Modal */}
