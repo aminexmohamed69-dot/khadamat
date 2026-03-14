@@ -41,21 +41,21 @@ export default function ProjectsSection({ onRevealOther }: { onRevealOther?: () 
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="p-10 pb-12 flex flex-row-reverse justify-between items-center bg-gray-50/50">
+          <div className="p-10 pb-12 flex flex-col md:flex-row-reverse justify-between items-center gap-8 bg-gray-50/50">
             {/* Right Side: New Badge */}
             <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg shrink-0">
               جديد
             </div>
 
             {/* Left Side: Button + Title */}
-            <div className="flex items-center gap-6 overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
               <button 
                 onClick={handleRevealClick}
                 className="text-blue-600 font-bold hover:text-blue-800 transition-colors text-lg border-b-2 border-blue-600/30 hover:border-blue-600 whitespace-nowrap shrink-0"
               >
                 اضغط للمزيد
               </button>
-              <h3 className="text-2xl lg:text-4xl font-bold text-gray-900 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                 مشروع تجزئة وإقامة النجمة – تيزنيت
               </h3>
             </div>
