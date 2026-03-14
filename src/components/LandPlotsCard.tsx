@@ -24,7 +24,7 @@ export default function LandPlotsCard() {
     }
 
     const message = `السلام عليكم\nأرغب في حجز بقعة\n\nالطابق: ${formData.floor}\nالنوع: ${formData.type}\nرقم البقعة: ${formData.plotNumber}`;
-    const whatsappUrl = `https://wa.me/212661795051?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/212702060323?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

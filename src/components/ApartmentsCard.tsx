@@ -23,7 +23,7 @@ export default function ApartmentsCard() {
     }
 
     const message = `السلام عليكم\nأرغب في حجز شقة\n\nالطابق: ${formData.floor}\nرقم الشقة: ${formData.apartmentNumber}`;
-    const whatsappUrl = `https://wa.me/212661795051?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/212702060323?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
