@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 export default function ApartmentsCard() {
   const [activeTab, setActiveTab] = useState('design');
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [formData, setFormData] = useState({
     floor: '1',
     apartmentNumber: '',
@@ -23,6 +24,7 @@ export default function ApartmentsCard() {
     const message = `السلام عليكم\nأرغب في حجز شقة\n\nالطابق: ${formData.floor}\nرقم الشقة: ${formData.apartmentNumber}`;
     const whatsappUrl = `https://wa.me/212661795051?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+    setShowConfirmation(false);
   };
 
   return (
@@ -37,7 +39,10 @@ export default function ApartmentsCard() {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setShowConfirmation(false);
+              }}
               className={`px-6 py-4 font-semibold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base ${
                 activeTab === tab.id
                   ? 'text-emerald-600 border-b-3 border-emerald-600 bg-white'
@@ -57,7 +62,7 @@ export default function ApartmentsCard() {
             <p className="text-gray-500 text-lg font-medium">قريباً</p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6 relative">
             {/* Horizontal Form Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -90,16 +95,43 @@ export default function ApartmentsCard() {
               </div>
             </div>
 
-            {/* Submit Button */}
-            <button
-              onClick={handleSubmit}
-              className="w-full md:w-auto md:ml-auto block px-12 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              تأكيد الحجز
-            </button>
+            {/* Animated Confirmation Button */}
+            <div className="flex justify-center pt-6">
+              {!showConfirmation ? (
+                <button
+                  onClick={() => setShowConfirmation(true)}
+                  className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  التالي
+                </button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="px-12 py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold text-lg rounded-xl transition transform hover:scale-110 shadow-xl hover:shadow-2xl animate-in fade-in zoom-in duration-300"
+                >
+                  تأكيد الحجز
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
+
+      <style>{`
+        @keyframes popIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.8) translateY(-10px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+        .animate-in {
+          animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+      `}</style>
     </div>
   );
 }

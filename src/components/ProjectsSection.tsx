@@ -23,7 +23,7 @@ export default function ProjectsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-gray-900 mb-4">
-            مشروع تجزئة وإقامة النجمة – تيزنيت
+            مشاريعنا الحالية
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
         </div>
@@ -31,8 +31,8 @@ export default function ProjectsSection() {
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
           <div className="relative">
             <div className="absolute top-6 right-6 z-10">
-              <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">
-                مشروع مميز
+              <span className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                جديد
               </span>
             </div>
 
