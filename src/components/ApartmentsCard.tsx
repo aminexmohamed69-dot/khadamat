@@ -81,15 +81,11 @@ export default function ApartmentsCard() {
 
       {/* Content */}
       <div className="p-8 lg:p-12">
-        {(activeTab === 'booking' || activeTab === 'progress' || activeTab === 'status' || activeTab === 'design') && (
+        {activeTab === 'progress' && (
           <div className="animate-in fade-in zoom-in duration-500 mb-8">
             {/* Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              {(activeTab === 'progress' ? progressImages : [
-                '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
-                '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
-                '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
-              ]).map((img, index) => (
+              {progressImages.map((img, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedImage(img)}

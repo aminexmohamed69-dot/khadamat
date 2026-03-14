@@ -25,9 +25,9 @@ export default function ProjectsSection({
   };
 
   return (
-    <section className="pt-10 pb-20 bg-gray-50" id="projects-current">
+    <section className="pt-6 pb-20 bg-gray-50" id="projects-current">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <h2 className="text-5xl font-bold text-gray-900 mb-4">
             مشاريعنا الحالية
           </h2>

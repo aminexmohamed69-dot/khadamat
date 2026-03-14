@@ -82,11 +82,11 @@ export default function LandPlotsCard() {
 
       {/* Content */}
       <div className="p-8 lg:p-12">
-        {(activeTab === 'booking' || activeTab === 'progress' || activeTab === 'status' || activeTab === 'design') && (
+        {activeTab === 'progress' && (
           <div className="animate-in fade-in zoom-in duration-500 mb-8">
             {/* Image Gallery */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              {(activeTab === 'progress' ? progressImages : plotImages).map((img, index) => (
+              {progressImages.map((img, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedImage(img)}
