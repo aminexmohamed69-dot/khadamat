@@ -15,9 +15,8 @@ export default function ApartmentsCard() {
   ];
 
   const progressImages = [
-    '/New_Project_(10).png',
-    '/New_Project_(7).png',
-    '/image.png',
+    '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
+    '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
   ];
 
   const tabs = [
@@ -161,17 +160,15 @@ export default function ApartmentsCard() {
               </>
             )}
 
-            {/* Always visible Confirmation Button */}
-            <button
-              onClick={handleSubmit}
-              className={`bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap ${
-                activeTab === 'booking' 
-                  ? `px-10 py-3 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}` 
-                  : 'px-20 py-5 text-2xl animate-in fade-in zoom-in duration-500 mx-auto'
-              }`}
-            >
-              تأكيد الحجز
-            </button>
+            {/* Only visible on Booking tab */}
+            {activeTab === 'booking' && (
+              <button
+                onClick={handleSubmit}
+                className={`bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap px-10 py-3 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}`}
+              >
+                تأكيد الحجز
+              </button>
+            )}
           </div>
 
           {/* Info Message */}
