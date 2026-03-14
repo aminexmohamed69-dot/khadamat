@@ -121,7 +121,7 @@ export default function LandPlotsCard() {
                   value={formData.floor}
                   onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
                   className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
-                >                  <option value="R+0">R+0 (الطابق الأرضي)</option>                  <option value="R+2">R+2</option>
+                >                  <option value="R+2">R+2</option>
                   <option value="R+3">R+3</option>
                   <option value="R+4">R+4</option>
                 </select>
