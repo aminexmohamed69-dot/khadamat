@@ -1,6 +1,6 @@
 export default function InteractiveProjectBox({ onShowDetails }) {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100" id="interactive-projects">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100" id="other-projects">
       <div className="max-w-4xl mx-auto px-6">
         <div className="space-y-8">
           {/* مشاريع اخرى Box */}

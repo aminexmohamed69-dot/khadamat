@@ -72,13 +72,13 @@ export default function Hero() {
             </p>
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-end">
               <button 
-                onClick={() => scrollToSection('interactive-projects')}
+                onClick={() => scrollToSection('projects-current')}
                 className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
               >
                 استكشف المشروع
               </button>
               <button 
-                onClick={() => scrollToSection('projects-section')}
+                onClick={() => scrollToSection('other-projects')}
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
               >
                 اطلب عرض سعر

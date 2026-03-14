@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 export default function ApartmentsCard() {
   const [activeTab, setActiveTab] = useState('design');
-  const [showConfirmation, setShowConfirmation] = useState(false);
   const [formData, setFormData] = useState({
     floor: '1',
     apartmentNumber: '',
@@ -15,8 +14,10 @@ export default function ApartmentsCard() {
     { id: 'booking', label: 'حجز شقة' },
   ];
 
+  const isFormValid = formData.apartmentNumber.trim() !== '';
+
   const handleSubmit = () => {
-    if (!formData.apartmentNumber) {
+    if (!isFormValid) {
       alert('الرجاء إدخال رقم الشقة');
       return;
     }
@@ -24,26 +25,22 @@ export default function ApartmentsCard() {
     const message = `السلام عليكم\nأرغب في حجز شقة\n\nالطابق: ${formData.floor}\nرقم الشقة: ${formData.apartmentNumber}`;
     const whatsappUrl = `https://wa.me/212661795051?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-    setShowConfirmation(false);
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition duration-300">
+    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition duration-300" style={{fontFamily: 'Cairo, sans-serif'}}>
       <div className="bg-gradient-to-r from-emerald-600 to-emerald-500 px-8 py-6">
-        <h3 className="text-3xl font-bold text-white">الشقق السكنية</h3>
+        <h3 className="text-3xl font-black text-white">الشقق السكنية</h3>
       </div>
 
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200 bg-gray-50">
-        <div className="flex overflow-x-auto">
+      <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto">
+        <div className="flex">
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => {
-                setActiveTab(tab.id);
-                setShowConfirmation(false);
-              }}
-              className={`px-6 py-4 font-semibold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base ${
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base ${
                 activeTab === tab.id
                   ? 'text-emerald-600 border-b-3 border-emerald-600 bg-white'
                   : 'text-gray-600 hover:text-emerald-500 hover:bg-gray-100'
@@ -56,23 +53,23 @@ export default function ApartmentsCard() {
       </div>
 
       {/* Content */}
-      <div className="p-8 lg:p-10">
+      <div className="p-8 lg:p-12">
         {activeTab !== 'booking' ? (
           <div className="text-center py-16">
             <p className="text-gray-500 text-lg font-medium">قريباً</p>
           </div>
         ) : (
-          <div className="space-y-6 relative">
+          <div className="space-y-6">
             {/* Horizontal Form Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+            <div className="flex flex-col lg:flex-row gap-4 items-end">
+              <div className="flex-1">
+                <label className="block text-sm font-bold text-gray-700 mb-3">
                   الطابق
                 </label>
                 <select
                   value={formData.floor}
                   onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
-                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-medium"
+                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-semibold"
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -81,8 +78,8 @@ export default function ApartmentsCard() {
                 </select>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <div className="flex-1">
+                <label className="block text-sm font-bold text-gray-700 mb-3">
                   رقم الشقة
                 </label>
                 <input
@@ -90,29 +87,27 @@ export default function ApartmentsCard() {
                   value={formData.apartmentNumber}
                   onChange={(e) => setFormData({ ...formData, apartmentNumber: e.target.value })}
                   placeholder="أدخل رقم الشقة"
-                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-medium"
+                  className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-semibold"
                 />
               </div>
-            </div>
 
-            {/* Animated Confirmation Button */}
-            <div className="flex justify-center pt-6">
-              {!showConfirmation ? (
-                <button
-                  onClick={() => setShowConfirmation(true)}
-                  className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-105 shadow-lg hover:shadow-xl"
-                >
-                  التالي
-                </button>
-              ) : (
+              {/* Auto-appearing Confirmation Button */}
+              {isFormValid && (
                 <button
                   onClick={handleSubmit}
-                  className="px-12 py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold text-lg rounded-xl transition transform hover:scale-110 shadow-xl hover:shadow-2xl animate-in fade-in zoom-in duration-300"
+                  className="px-10 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl animate-in fade-in zoom-in duration-500 whitespace-nowrap"
                 >
                   تأكيد الحجز
                 </button>
               )}
             </div>
+
+            {/* Info Message */}
+            {!isFormValid && (
+              <p className="text-center text-gray-500 text-sm font-medium animate-in fade-in duration-300">
+                يرجى إدخال رقم الشقة لإتمام الحجز
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -129,7 +124,7 @@ export default function ApartmentsCard() {
           }
         }
         .animate-in {
-          animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
       `}</style>
     </div>
