@@ -29,14 +29,18 @@ export default function ProjectsSection() {
         </div>
 
         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-          <div className="relative">
-            <div className="absolute top-6 right-6 z-10">
-              <span className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                جديد
-              </span>
+          <div className="p-8 pb-0 flex flex-row-reverse justify-between items-end">
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-base font-bold shadow-lg">
+              جديد
             </div>
+            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 max-w-2xl text-right leading-tight mb-2">
+              مشروع تجزئة وإقامة النجمة – تيزنيت
+            </h3>
+          </div>
 
+          <div className="relative">
             <div className="aspect-video overflow-hidden bg-gray-200 relative">
+
               {images.map((img, idx) => (
                 <img
                   key={idx}
@@ -76,10 +80,6 @@ export default function ProjectsSection() {
             </div>
 
             <div className="p-10 bg-gradient-to-r from-blue-50 to-white border-t border-gray-100">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">
-                مشروع تجزئة وإقامة النجمة – تيزنيت
-              </h3>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="flex items-start gap-4 text-gray-700">
                   <span className="text-blue-600 font-bold text-2xl mt-1">✓</span>
