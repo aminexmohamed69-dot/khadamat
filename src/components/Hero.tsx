@@ -4,6 +4,13 @@ import { useState } from 'react';
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="bg-white">
       {/* Premium Header with Glass Effect */}
@@ -49,9 +56,16 @@ export default function Hero() {
         {/* Content */}
         <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-center gap-16">
           <div className="lg:flex-1 text-center lg:text-right">
-            <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight text-white drop-shadow-lg" style={{fontFamily: 'Cairo, sans-serif'}}>
+            {/* Interactive Title */}
+            <h1 
+              onClick={() => scrollToSection('projects-section')}
+              className="text-5xl lg:text-7xl font-black mb-6 leading-tight text-white drop-shadow-lg cursor-pointer group transition-all duration-300" 
+              style={{fontFamily: 'Cairo, sans-serif'}}
+            >
               مشروع تجزئة وإقامة النجمة – تيزنيت
+              <div className="h-1 bg-gradient-to-r from-white to-blue-200 mt-4 transform scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-700 ease-out rounded-full"></div>
             </h1>
+            
             <p className="text-xl lg:text-2xl text-blue-100 mb-8 leading-relaxed font-semibold drop-shadow-md">
               منطقة سكنية وتجارية حديثة بتصاميم عصرية
             </p>
@@ -59,10 +73,16 @@ export default function Hero() {
               نحن نقدم مشاريع عقارية متطورة بمعايير عالمية، شقق سكنية فاخرة وفضاءات مكتبية احترافية
             </p>
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-end">
-              <button className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl">
+              <button 
+                onClick={() => scrollToSection('interactive-projects')}
+                className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
+              >
                 استكشف المشروع
               </button>
-              <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl">
+              <button 
+                onClick={() => scrollToSection('projects-section')}
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 hover:shadow-2xl shadow-xl"
+              >
                 اطلب عرض سعر
               </button>
             </div>
@@ -80,6 +100,19 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes slideUnderline {
+          from {
+            transform: scaleX(0);
+            transform-origin: right;
+          }
+          to {
+            transform: scaleX(1);
+            transform-origin: right;
+          }
+        }
+      `}</style>
     </div>
   );
 }
