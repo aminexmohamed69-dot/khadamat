@@ -64,7 +64,10 @@ export default function Hero() {
               <div className="h-1 bg-gradient-to-r from-white to-blue-200 mt-4 transform scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-700 ease-out rounded-full"></div>
             </h1>
             
-            <p className="text-xl lg:text-2xl text-blue-100 mb-8 leading-relaxed font-semibold drop-shadow-md">
+            <p 
+              onClick={() => scrollToSection('projects-current')}
+              className="text-xl lg:text-2xl text-blue-100 mb-8 leading-relaxed font-semibold drop-shadow-md cursor-pointer hover:text-white transition-colors duration-300"
+            >
               منطقة سكنية وتجارية حديثة بتصاميم عصرية
             </p>
             <p className="text-base text-blue-200 mb-12 leading-relaxed max-w-2xl lg:ml-auto drop-shadow-md">
