@@ -1,6 +1,11 @@
-import { useState, useEffect } from 'react';
-import { parseProjectPdf, Plot } from '../utils/pdfParser';
-import { Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+
+const floorPlanImages = [
+  '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
+  '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
+  '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
+  '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
+];
 
 // Mock API response
 const getPlotStatus = async (plotNumber: string) => {
@@ -22,6 +27,7 @@ export default function StatusTab() {
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<'R+2' | 'R+3' | 'R+4'>('R+2');
   const [activeType, setActiveType] = useState<'residential' | 'commercial'>('residential');
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   useEffect(() => {
     const initPlots = async () => {
@@ -42,6 +48,14 @@ export default function StatusTab() {
     initPlots();
   }, []);
 
+  const handleNextSlide = () => {
+    setCurrentSlideIndex((prev) => (prev + 1) % floorPlanImages.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlideIndex((prev) => (prev - 1 + floorPlanImages.length) % floorPlanImages.length);
+  };
+
   const filteredPlots = plots.filter(
     (p) => p.category === activeCategory && p.type === activeType
   );
@@ -56,10 +70,58 @@ export default function StatusTab() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       <div className="flex flex-col gap-2">
         <h3 className="text-2xl font-bold text-gray-900">وضعية الشقق</h3>
-        <p className="text-gray-500">اختر الطابق ونوع البقعة لعرض التفاصيل</p>
+        <p className="text-gray-500">مشاهدة المخططات والمواقع الحالية للبقع</p>
+      </div>
+
+      {/* Floor Plan Slider */}
+      <div className="relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-2xl group ring-1 ring-black/5 aspect-[16/9] md:aspect-[21/9]">
+        <div className="absolute inset-0 flex items-center justify-center p-4">
+          <img 
+            src={floorPlanImages[currentSlideIndex]} 
+            alt={`Floor Plan ${currentSlideIndex + 1}`}
+            className="max-w-full max-h-full object-contain transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-[1.02]"
+          />
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="absolute inset-0 flex items-center justify-between px-2 md:px-8 pointer-events-none">
+          <button 
+            onClick={handlePrevSlide}
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
+          >
+            <ChevronLeft size={24} className="md:w-7 md:h-7" />
+          </button>
+          
+          <button 
+            onClick={handleNextSlide}
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
+          >
+            <ChevronRight size={24} className="md:w-7 md:h-7" />
+          </button>
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {floorPlanImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlideIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                idx === currentSlideIndex ? 'w-8 bg-blue-600' : 'w-2 bg-white/50 hover:bg-white group-hover:bg-gray-300'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-8 pt-4">
+        <div className="text-center">
+          <h4 className="text-xl font-bold text-gray-900 mb-2">تصفية البقع حسب الفئة</h4>
+          <p className="text-gray-500">اختر الطابق ونوع البقعة لعرض التفاصيل في الجدول أدناه</p>
+        </div>
       </div>
 
       {/* R+ Tabs */}
