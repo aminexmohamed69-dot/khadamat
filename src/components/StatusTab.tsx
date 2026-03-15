@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { parseProjectPdf, Plot } from '../utils/pdfParser';
 
 const floorPlanImages = [
-  '/8b031074-8b99-44d7-a664-73b449f0666e.jpg', // Site Plan
+  '/image.png', // Site Plan (Map with plots)
   '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg', // 4ème
   '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg', // 3ème
   '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg', // 1ère
