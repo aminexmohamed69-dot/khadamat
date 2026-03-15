@@ -3,11 +3,10 @@ import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { parseProjectPdf, Plot } from '../utils/pdfParser';
 
 const floorPlanImages = [
-  '/image.png', // Site Plan (Map with plots)
-  '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg', // 4ème
-  '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg', // 3ème
-  '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg', // 1ère
-  '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'  // RDC
+  '/plan-4eme.jpg',  // 4ème Étage
+  '/plan-3eme.jpg',  // 3ème Étage
+  '/plan-1ere.jpg',  // 1ère Étage
+  '/plan-rdc.jpg',   // Rez de Chaussée
 ];
 
 // Mock API response
@@ -98,11 +97,6 @@ export default function StatusTab() {
             alt={floorLabels[currentSlideIndex]}
             className="max-w-full max-h-full object-contain transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-[1.02]"
           />
-        </div>
-
-        {/* Floor Label Badge */}
-        <div className="absolute top-6 right-6 bg-black/70 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold z-20 border border-white/20">
-          {floorLabels[currentSlideIndex]}
         </div>
 
         {/* Navigation Arrows */}
