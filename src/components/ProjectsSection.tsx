@@ -8,10 +8,8 @@ const images = [
 ];
 
 export default function ProjectsSection({ 
-  onRevealOther,
   onExploreProject
 }: { 
-  onRevealOther?: () => void;
   onExploreProject?: () => void;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);

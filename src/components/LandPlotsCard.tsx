@@ -9,11 +9,11 @@ export default function LandPlotsCard() {
     plotNumber: '',
   });
 
-  const plotImages = [
-    '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
-    '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
-    '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
-  ];
+  // const plotImages = [
+  //   '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
+  //   '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
+  //   '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
+  // ];
 
   const progressImages = [
     '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',

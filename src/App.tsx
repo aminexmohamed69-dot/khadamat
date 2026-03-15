@@ -7,7 +7,6 @@ import ProjectDetails from './components/ProjectDetails';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<'home' | 'project-details'>('home');
-  const [isRevealed, setIsRevealed] = useState(false);
 
   const handleShowProjectDetails = () => {
     setCurrentView('project-details');
@@ -26,12 +25,11 @@ export default function App() {
       {currentView === 'home' ? (
         <>
           <ProjectsSection 
-            onRevealOther={() => setIsRevealed(true)} 
             onExploreProject={handleShowProjectDetails}
           />
           <Hero />
           <InteractiveProjectBox 
-            isRevealed={isRevealed} 
+            isRevealed={true} 
             onShowDetails={handleShowProjectDetails} 
           />
         </>
