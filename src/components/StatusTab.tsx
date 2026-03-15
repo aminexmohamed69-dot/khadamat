@@ -34,26 +34,33 @@ export default function StatusTab() {
   useEffect(() => {
     const initPlots = async () => {
       setLoading(true);
-      // We'll use the PDF parser but also ensure we have data from the user's provided plan
-      const extractedPlots = await parseProjectPdf('/plan.pdf');
-      
-      // If PDF parsing is empty, we fall back to a robust set of plots based on the user's provided site plan
-      const basePlots: Plot[] = extractedPlots.length > 0 ? extractedPlots : [
-        // R+2 Plots
-        { code: 'HC2', number: '10', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HC2', number: '12', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '15', type: 'residential', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '17', type: 'residential', floor: '2', category: 'R+2' },
-        // R+3 Plots
+      // Data extracted from site plan image
+      const basePlots: Plot[] = [
+        // R+2 Plots (HC2/HE2)
+        { code: 'HC2', number: '33', type: 'commercial', floor: '2', category: 'R+2' },
+        { code: 'HC2', number: '35', type: 'commercial', floor: '2', category: 'R+2' },
+        { code: 'HC2', number: '37', type: 'commercial', floor: '2', category: 'R+2' },
+        { code: 'HC2', number: '49', type: 'commercial', floor: '2', category: 'R+2' },
+        { code: 'HE2', number: '4', type: 'residential', floor: '2', category: 'R+2' },
+        { code: 'HE2', number: '6', type: 'residential', floor: '2', category: 'R+2' },
+        { code: 'HE2', number: '8', type: 'residential', floor: '2', category: 'R+2' },
+        { code: 'HE2', number: '10', type: 'residential', floor: '2', category: 'R+2' },
+        
+        // R+3 Plots (HC3/HE3)
         { code: 'HC3', number: '20', type: 'commercial', floor: '3', category: 'R+3' },
         { code: 'HC3', number: '22', type: 'commercial', floor: '3', category: 'R+3' },
+        { code: 'HC3', number: '24', type: 'commercial', floor: '3', category: 'R+3' },
         { code: 'HE3', number: '25', type: 'residential', floor: '3', category: 'R+3' },
         { code: 'HE3', number: '27', type: 'residential', floor: '3', category: 'R+3' },
-        // R+4 Plots
-        { code: 'HC4', number: '30', type: 'commercial', floor: '4', category: 'R+4' },
-        { code: 'HC4', number: '32', type: 'commercial', floor: '4', category: 'R+4' },
-        { code: 'HE4', number: '35', type: 'residential', floor: '4', category: 'R+4' },
-        { code: 'HE4', number: '37', type: 'residential', floor: '4', category: 'R+4' },
+        { code: 'HE3', number: '29', type: 'residential', floor: '3', category: 'R+3' },
+        
+        // R+4 Plots (HC4/HE4)
+        { code: 'HC4', number: '70', type: 'commercial', floor: '4', category: 'R+4' },
+        { code: 'HC4', number: '72', type: 'commercial', floor: '4', category: 'R+4' },
+        { code: 'HC4', number: '74', type: 'commercial', floor: '4', category: 'R+4' },
+        { code: 'HE4', number: '71', type: 'residential', floor: '4', category: 'R+4' },
+        { code: 'HE4', number: '73', type: 'residential', floor: '4', category: 'R+4' },
+        { code: 'HE4', number: '75', type: 'residential', floor: '4', category: 'R+4' },
       ];
 
       const plotsWithStatus = await Promise.all(
