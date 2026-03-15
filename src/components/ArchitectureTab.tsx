@@ -36,21 +36,21 @@ export default function ArchitectureTab() {
         </div>
 
         {/* Navigation Arrows */}
-        <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-between px-2 md:px-8 pointer-events-none">
           <button 
             onClick={handlePrev}
-            className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all"
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
             aria-label="Previous image"
           >
-            <ChevronLeft size={28} />
+            <ChevronLeft size={24} className="md:w-7 md:h-7" />
           </button>
           
           <button 
             onClick={handleNext}
-            className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all"
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
             aria-label="Next image"
           >
-            <ChevronRight size={28} />
+            <ChevronRight size={24} className="md:w-7 md:h-7" />
           </button>
         </div>
 
