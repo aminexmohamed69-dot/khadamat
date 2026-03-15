@@ -25,8 +25,22 @@ export default function ArchitectureTab() {
         <h3 className="text-2xl font-bold text-gray-900">تصميم العمارة</h3>
         <p className="text-gray-500">مشاهدة المخطط الكامل للمشروع ({currentIndex + 1} / {architectureImages.length})</p>
       </div>
+
+      {/* Embedded PDF Viewer */}
+      <div className="w-full h-[600px] rounded-3xl overflow-hidden border border-gray-100 shadow-xl bg-gray-50">
+        <iframe
+          src="/plan.pdf#view=FitH"
+          className="w-full h-full border-none"
+          title="Project Plan PDF"
+        />
+      </div>
+
+      <div className="flex flex-col gap-4 mt-4">
+        <h4 className="text-xl font-bold text-gray-900">معرض الصور</h4>
+        <p className="text-gray-500">تصفح صور المخططات بتفصيل أكبر</p>
+      </div>
       
-      <div className="flex-1 relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-2xl group ring-1 ring-black/5">
+      <div className="flex-1 relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-2xl group ring-1 ring-black/5 min-h-[400px]">
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <img 
             src={architectureImages[currentIndex]} 
@@ -39,7 +53,7 @@ export default function ArchitectureTab() {
         <div className="absolute inset-0 flex items-center justify-between px-2 md:px-8 pointer-events-none">
           <button 
             onClick={handlePrev}
-            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 border border-gray-100/50"
             aria-label="Previous image"
           >
             <ChevronLeft size={24} className="md:w-7 md:h-7" />
@@ -47,7 +61,7 @@ export default function ArchitectureTab() {
           
           <button 
             onClick={handleNext}
-            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 md:opacity-0 group-hover:opacity-100 border border-gray-100/50"
+            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 border border-gray-100/50"
             aria-label="Next image"
           >
             <ChevronRight size={24} className="md:w-7 md:h-7" />
@@ -86,7 +100,7 @@ export default function ArchitectureTab() {
           rel="noopener noreferrer"
           className="flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-600 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-gray-200"
         >
-          <span>عرض المخطط الكامل</span>
+          <span>فتح في نافذة جديدة</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </a>
       </div>
