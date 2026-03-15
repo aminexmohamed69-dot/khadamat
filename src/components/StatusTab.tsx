@@ -63,11 +63,6 @@ export default function StatusTab() {
     (p) => p.category === activeCategory && p.type === activeType
   );
 
-  // Move filtering logic outside to handle loading state more gracefully
-  const filteredPlots = plots.filter(
-    (p) => p.category === activeCategory && p.type === activeType
-  );
-
   const floorLabels = [
     'مخطط الموقع العام (Site Plan)',
     'الطابق الرابع (4ème)',
@@ -188,36 +183,38 @@ export default function StatusTab() {
 
           {/* Plots Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {filteredPlots.length > 0 ? (
-          filteredPlots.map((plot, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-gray-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center gap-3 text-center"
-            >
-              <div className="text-xl font-black text-gray-800 flex items-center gap-2">
-                <span>{plot.code}</span>
-                <span className="text-blue-500 text-sm">●</span>
-                <span>{plot.number}</span>
+            {filteredPlots.length > 0 ? (
+              filteredPlots.map((plot, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border border-gray-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center gap-3 text-center"
+                >
+                  <div className="text-xl font-black text-gray-800 flex items-center gap-2">
+                    <span>{plot.code}</span>
+                    <span className="text-blue-500 text-sm">●</span>
+                    <span>{plot.number}</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50">
+                    <div className={`w-2.5 h-2.5 rounded-full ${
+                      plot.status === 'available' ? 'bg-green-500 animate-pulse' : 'bg-red-500'
+                    }`} />
+                    <span className={`text-xs font-bold ${
+                      plot.status === 'available' ? 'text-green-700' : 'text-red-700'
+                    }`}>
+                      {plot.status === 'available' ? 'متاحة' : 'محجوزة'}
+                    </span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full py-20 text-center bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200">
+                <p className="text-gray-400 font-medium">لا توجد بقع متوفرة في هذا القسم حالياً</p>
               </div>
-              
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50">
-                <div className={`w-2.5 h-2.5 rounded-full ${
-                  plot.status === 'available' ? 'bg-green-500 animate-pulse' : 'bg-red-500'
-                }`} />
-                <span className={`text-xs font-bold ${
-                  plot.status === 'available' ? 'text-green-700' : 'text-red-700'
-                }`}>
-                  {plot.status === 'available' ? 'متاحة' : 'محجوزة'}
-                </span>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="col-span-full py-20 text-center bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200">
-            <p className="text-gray-400 font-medium">لا توجد بقع متوفرة في هذا القسم حالياً</p>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
