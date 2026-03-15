@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const architectureImages = [
-  '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
-  '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
-  '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
-  '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
-  '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
+  '/plan-rdc.jpg',
+  '/plan-1ere.jpg',
+  '/plan-3eme.jpg',
+  '/plan-4eme.jpg'
 ];
 
 export default function ArchitectureTab() {
