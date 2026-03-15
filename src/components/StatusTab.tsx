@@ -37,30 +37,16 @@ export default function StatusTab() {
       // Data extracted from site plan image
       const basePlots: Plot[] = [
         // R+2 Plots (HC2/HE2)
-        { code: 'HC2', number: '33', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HC2', number: '35', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HC2', number: '37', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HC2', number: '49', type: 'commercial', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '4', type: 'residential', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '6', type: 'residential', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '8', type: 'residential', floor: '2', category: 'R+2' },
-        { code: 'HE2', number: '10', type: 'residential', floor: '2', category: 'R+2' },
+        ...[33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55].map(n => ({ code: 'HC2', number: n.toString(), type: 'commercial' as const, floor: '2', category: 'R+2' as const })),
+        ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(n => ({ code: 'HE2', number: n.toString(), type: 'residential' as const, floor: '2', category: 'R+2' as const })),
         
         // R+3 Plots (HC3/HE3)
-        { code: 'HC3', number: '20', type: 'commercial', floor: '3', category: 'R+3' },
-        { code: 'HC3', number: '22', type: 'commercial', floor: '3', category: 'R+3' },
-        { code: 'HC3', number: '24', type: 'commercial', floor: '3', category: 'R+3' },
-        { code: 'HE3', number: '25', type: 'residential', floor: '3', category: 'R+3' },
-        { code: 'HE3', number: '27', type: 'residential', floor: '3', category: 'R+3' },
-        { code: 'HE3', number: '29', type: 'residential', floor: '3', category: 'R+3' },
+        ...[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30].map(n => ({ code: 'HC3', number: n.toString(), type: 'commercial' as const, floor: '3', category: 'R+3' as const })),
+        ...[40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50].map(n => ({ code: 'HE3', number: n.toString(), type: 'residential' as const, floor: '3', category: 'R+3' as const })),
         
         // R+4 Plots (HC4/HE4)
-        { code: 'HC4', number: '70', type: 'commercial', floor: '4', category: 'R+4' },
-        { code: 'HC4', number: '72', type: 'commercial', floor: '4', category: 'R+4' },
-        { code: 'HC4', number: '74', type: 'commercial', floor: '4', category: 'R+4' },
-        { code: 'HE4', number: '71', type: 'residential', floor: '4', category: 'R+4' },
-        { code: 'HE4', number: '73', type: 'residential', floor: '4', category: 'R+4' },
-        { code: 'HE4', number: '75', type: 'residential', floor: '4', category: 'R+4' },
+        ...[60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70].map(n => ({ code: 'HC4', number: n.toString(), type: 'commercial' as const, floor: '4', category: 'R+4' as const })),
+        ...[71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81].map(n => ({ code: 'HE4', number: n.toString(), type: 'residential' as const, floor: '4', category: 'R+4' as const })),
       ];
 
       const plotsWithStatus = await Promise.all(
