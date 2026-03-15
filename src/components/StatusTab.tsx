@@ -15,8 +15,8 @@ const getPlotStatus = async (plotNumber: string) => {
   // Simulating an API call
   return new Promise<'available' | 'reserved'>((resolve) => {
     setTimeout(() => {
-      // Logic to make it look realistic: even numbers available, odd reserved
-      resolve(parseInt(plotNumber) % 3 === 0 ? 'reserved' : 'available');
+      // Set all plots to available as requested by user
+      resolve('available');
     }, 100);
   });
 };
