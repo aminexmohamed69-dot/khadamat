@@ -1,5 +1,4 @@
-import { Home, MapPin, ChevronRight, ChevronLeft } from 'lucide-react';
-import { useState } from 'react';
+import { Home, MapPin } from 'lucide-react';
 
 interface MainOptionsProps {
   onSelect: (option: 'apartments' | 'land') => void;
