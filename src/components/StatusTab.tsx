@@ -16,7 +16,7 @@ interface PlotWithStatus extends Plot {
   status: 'available' | 'reserved';
 }
 
-export default function StatusTab() {
+export default function StatusTab({ title = 'وضعية الشقق' }: { title?: string }) {
   const [plots, setPlots] = useState<PlotWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<'R+2' | 'R+3' | 'R+4'>('R+2');
@@ -26,21 +26,27 @@ export default function StatusTab() {
     const initPlots = async () => {
       setLoading(true);
       // Data extracted from site plan image
-      const reservedNumbers = ['5', '8', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
+      const reservedNumbers = ['5', '8', '9', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
       
-      const generatePlots = (start: number, end: number, code: string, type: 'residential' | 'commercial', floor: string, category: 'R+2' | 'R+3' | 'R+4'): Plot[] => {
-        return Array.from({ length: end - start + 1 }, (_, i) => i + start).map(n => ({
+      const generatePlotsFromList = (numbers: number[], code: string, type: 'residential' | 'commercial', floor: string, category: 'R+2' | 'R+3' | 'R+4'): Plot[] => {
+        return numbers.map(n => ({
           code, number: n.toString(), type, floor, category
         }));
       };
 
       const basePlots: Plot[] = [
-        ...generatePlots(1, 14, 'HE2', 'residential', '2', 'R+2'),
-        ...generatePlots(15, 28, 'HC2', 'commercial', '2', 'R+2'),
-        ...generatePlots(29, 42, 'HE3', 'residential', '3', 'R+3'),
-        ...generatePlots(43, 56, 'HC3', 'commercial', '3', 'R+3'),
-        ...generatePlots(57, 68, 'HE4', 'residential', '4', 'R+4'),
-        ...generatePlots(69, 80, 'HC4', 'commercial', '4', 'R+4'),
+        // R+2 Residential
+        ...generatePlotsFromList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 34, 35, 36, 37, 38, 43, 44, 45, 46, 47, 48, 49, 50], 'HE2', 'residential', '2', 'R+2'),
+        // R+2 Commercial
+        ...generatePlotsFromList([15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 32, 33, 39, 40, 41], 'HC2', 'commercial', '2', 'R+2'),
+        // R+3 Residential
+        ...generatePlotsFromList([29, 30, 31], 'HE3', 'residential', '3', 'R+3'),
+        // R+3 Commercial
+        ...generatePlotsFromList([42, 51, 52, 53, 54, 55, 56], 'HC3', 'commercial', '3', 'R+3'),
+        // R+4 Residential
+        ...generatePlotsFromList([57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 86], 'HE4', 'residential', '4', 'R+4'),
+        // R+4 Commercial
+        ...generatePlotsFromList([69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 'HC4', 'commercial', '4', 'R+4'),
       ];
 
       // Simulate network delay for effect
@@ -81,7 +87,7 @@ export default function StatusTab() {
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-2">
-        <h3 className="text-2xl font-bold text-white drop-shadow-md">وضعية الشقق</h3>
+        <h3 className="text-2xl font-bold text-white drop-shadow-md">{title}</h3>
         <p className="text-blue-100">مشاهدة المخططات والمواقع الحالية للبقع</p>
       </div>
 
@@ -189,10 +195,10 @@ export default function StatusTab() {
               filteredPlots.map((plot, idx) => (
                 <div
                   key={idx}
-                  className={`group border p-4 rounded-3xl transition-all duration-500 flex flex-col items-center gap-3 text-center relative backdrop-blur-3xl hover:-translate-y-2 hover:scale-105 ${
+                  className={`group border p-4 rounded-3xl transition-all duration-500 flex flex-col items-center gap-3 text-center relative backdrop-blur-3xl hover:-translate-y-2 hover:scale-105 shadow-xl ${
                     plot.status === 'available'
-                      ? 'bg-emerald-400 border-emerald-300 shadow-[0_20px_40px_rgba(16,185,129,0.2)] hover:shadow-[0_25px_50px_rgba(16,185,129,0.4)]'
-                      : 'bg-red-600 border-red-500 shadow-[0_10px_30px_rgba(220,38,38,0.3)]'
+                      ? 'bg-emerald-500 border-emerald-400 shadow-[0_20px_40px_rgba(16,185,129,0.3)]'
+                      : 'bg-red-600 border-red-500 shadow-[0_10px_30px_rgba(220,38,38,0.4)]'
                   }`}
                 >
                   <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4">
@@ -206,7 +212,9 @@ export default function StatusTab() {
                     <span>{plot.number}</span>
                   </div>
                   
-                  <div className={`flex items-center gap-2 px-3 py-1 rounded-full w-full justify-center ${plot.status === 'available' ? 'bg-black/10' : 'bg-black/20'}`}>
+                  <div className={`flex items-center gap-2 px-3 py-1 rounded-full w-full justify-center ${
+                    plot.status === 'available' ? 'bg-black/10' : 'bg-black/20'
+                  }`}>
                     <div className={`w-2 h-2 rounded-full ${
                       plot.status === 'available' ? 'bg-white animate-pulse' : 'bg-red-200'
                     }`} />
@@ -222,7 +230,7 @@ export default function StatusTab() {
                       href={`https://wa.me/212702060323?text=${encodeURIComponent(`السلام عليكم\nأرغب في حجز البقعة رقم ${plot.number} (${plot.code})`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-2 px-3 bg-black text-white text-xs font-black rounded-xl hover:bg-stone-900 transition-all flex items-center justify-center shadow-lg group-hover:animate-bounce mt-1"
+                      className="w-full py-2 px-3 bg-white text-emerald-700 text-xs font-black rounded-xl hover:bg-emerald-50 transition-all flex items-center justify-center shadow-lg group-hover:animate-bounce mt-1"
                     >
                       حجز الآن
                     </a>

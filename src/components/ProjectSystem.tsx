@@ -5,26 +5,50 @@ import StatusTab from './StatusTab';
 import ProgressTab from './ProgressTab';
 import BookingTab from './BookingTab';
 
-const tabs = [
-  { id: 'architecture', label: 'تصميم العمارة', icon: Layout },
-  { id: 'status', label: 'وضعية الشقق', icon: MapPin },
-  { id: 'progress', label: 'تقدم الأشغال', icon: Construction },
-  { id: 'booking', label: 'حجز شقة', icon: CalendarCheck },
-];
+interface ProjectSystemProps {
+  type: 'apartments' | 'land';
+}
 
-export default function ApartmentSystem() {
-  const [activeTab, setActiveTab] = useState('architecture');
+export default function ProjectSystem({ type }: ProjectSystemProps) {
+  const [activeTab, setActiveTab] = useState(type === 'land' ? 'status' : 'architecture');
+
+  const tabs = [
+    { 
+      id: 'architecture', 
+      label: type === 'apartments' ? 'تصميم العمارة' : 'تصميم التجزئة', 
+      icon: Layout,
+      show: true 
+    },
+    { 
+      id: 'status', 
+      label: type === 'apartments' ? 'وضعية الشقق' : 'وضعية البقع', 
+      icon: MapPin,
+      show: true 
+    },
+    { 
+      id: 'progress', 
+      label: 'تقدم الأشغال', 
+      icon: Construction,
+      show: true 
+    },
+    { 
+      id: 'booking', 
+      label: type === 'apartments' ? 'حجز شقة' : 'حجز بقعة', 
+      icon: CalendarCheck,
+      show: true 
+    },
+  ];
 
   const renderContent = () => {
     switch (activeTab) {
       case 'architecture':
         return <ArchitectureTab />;
       case 'status':
-        return <StatusTab />;
+        return <StatusTab title={type === 'apartments' ? 'وضعية الشقق' : 'وضعية البقع'} />;
       case 'progress':
         return <ProgressTab />;
       case 'booking':
-        return <BookingTab />;
+        return <BookingTab type={type} />;
       default:
         return null;
     }
@@ -34,7 +58,7 @@ export default function ApartmentSystem() {
     <div className="w-full space-y-8 animate-fadeIn">
       {/* Tabs Menu */}
       <div className="flex flex-wrap justify-center gap-4 border-b border-white/10 pb-6">
-        {tabs.map((tab) => {
+        {tabs.filter(t => t.show).map((tab) => {
           const Icon = tab.icon;
           return (
             <button

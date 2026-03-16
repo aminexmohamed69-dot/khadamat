@@ -1,20 +1,25 @@
 import { useState } from 'react';
 
 
-export default function BookingTab() {
+export default function BookingTab({ type = 'apartments' }: { type?: 'apartments' | 'land' }) {
   const [floor, setFloor] = useState('1');
   const [apartmentNumber, setApartmentNumber] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent default form submission behavior
-    alert(`تم إرسال طلب الحجز: الطبق ${floor}، رقم الشقة ${apartmentNumber}`);
+    const label = type === 'apartments' ? 'الشقة' : 'البقعة';
+    alert(`تم إرسال طلب الحجز: الطبق ${floor}، رقم ${label} ${apartmentNumber}`);
   };
 
   return (
     <div className="space-y-12 animate-fadeIn py-10">
       <div className="text-center space-y-4">
-        <h3 className="text-4xl font-black text-white drop-shadow-xl tracking-tight">حجز شقة</h3>
-        <p className="text-blue-100/60 font-medium text-lg">يرجى إدخال تفاصيل الشقة لإتمام الحجز</p>
+        <h3 className="text-4xl font-black text-white drop-shadow-xl tracking-tight">
+          {type === 'apartments' ? 'حجز شقة' : 'حجز بقعة'}
+        </h3>
+        <p className="text-blue-100/60 font-medium text-lg">
+          {type === 'apartments' ? 'يرجى إدخال تفاصيل الشقة لإتمام الحجز' : 'يرجى إدخال تفاصيل البقعة لإتمام الحجز'}
+        </p>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-10">
@@ -39,7 +44,9 @@ export default function BookingTab() {
           </div>
 
           <div className="space-y-4">
-            <label className="block text-lg font-bold text-white px-2">رقم الشقة</label>
+            <label className="block text-lg font-bold text-white px-2">
+              {type === 'apartments' ? 'رقم الشقة' : 'رقم البقعة'}
+            </label>
             <input
               type="text"
               value={apartmentNumber}
