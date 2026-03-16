@@ -11,7 +11,6 @@ const images = [
 
 export default function ArchitectureTab({ type }: { type?: 'apartments' | 'land' }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null); 
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -31,9 +30,6 @@ export default function ArchitectureTab({ type }: { type?: 'apartments' | 'land'
           <p className="text-blue-100/60 font-medium font-Cairo">مشاهدة المخطط الكامل للمشروع ({currentIndex + 1} / {images.length})</p>
         </div>
         
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-2xl shadow-lg">
-          <span className="text-blue-200 font-black text-sm tracking-widest">DÉTAILS TECHNIQUES</span>
-        </div>
       </div>
 
       {/* Content based on type */}
