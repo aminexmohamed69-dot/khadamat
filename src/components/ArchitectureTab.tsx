@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
-  '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg',
-  '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
-  '/media__1773618014805.png' // New interior plan image
+  '/media__1773619625070.jpg', // Rez de chaussée
+  '/media__1773619625114.jpg', // 1ere ETAGE
+  '/media__1773619628209.jpg', // 3eme ETAGE
+  '/media__1773619628250.jpg', // 4eme ETAGE
+  '/media__1773619620985.jpg'  // Detailed Plot Map (Rue No 48)
 ];
 
 export default function ArchitectureTab() {
