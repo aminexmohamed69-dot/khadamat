@@ -10,7 +10,7 @@ interface ProjectSystemProps {
 }
 
 export default function ProjectSystem({ type }: ProjectSystemProps) {
-  const [activeTab, setActiveTab] = useState(type === 'land' ? 'status' : 'architecture');
+  const [activeTab, setActiveTab] = useState('architecture');
 
   const tabs = [
     { 

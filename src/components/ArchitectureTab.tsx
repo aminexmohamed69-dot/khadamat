@@ -90,16 +90,16 @@ export default function ArchitectureTab({ type }: { type?: 'apartments' | 'land'
             <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
               <button
                 onClick={handlePrev}
-                className="pointer-events-auto w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-xl hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
+                className="pointer-events-auto w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-xl hover:bg-black/60 transition-all opacity-100"
               >
-                <ChevronRight size={24} />
+                <ChevronLeft size={24} />
               </button>
 
               <button
                 onClick={handleNext}
-                className="pointer-events-auto w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-xl hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100"
+                className="pointer-events-auto w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white shadow-xl hover:bg-black/60 transition-all opacity-100"
               >
-                <ChevronLeft size={24} />
+                <ChevronRight size={24} />
               </button>
             </div>
 
