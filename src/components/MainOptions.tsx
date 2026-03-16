@@ -1,4 +1,4 @@
-import { Building2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Home, MapPin, ChevronRight, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
 
 interface MainOptionsProps {
@@ -16,7 +16,7 @@ export default function MainOptions({ onSelect }: MainOptionsProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
         
         <div className="w-28 h-28 lg:w-40 lg:h-40 bg-blue-500/20 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center text-blue-400 group-hover:scale-110 transition-all duration-700 z-10 shadow-inner border border-blue-400/30 overflow-hidden">
-          <Building2 size={80} strokeWidth={1.5} className="group-hover:rotate-6 transition-transform duration-700" />
+          <Home size={80} strokeWidth={1.5} className="group-hover:-rotate-6 transition-transform duration-700" />
         </div>
         
         <div className="text-center z-10">
@@ -35,7 +35,7 @@ export default function MainOptions({ onSelect }: MainOptionsProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
         
         <div className="w-28 h-28 lg:w-40 lg:h-40 bg-orange-500/20 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center text-orange-400 group-hover:scale-105 transition-all duration-700 z-10 shadow-inner border border-orange-400/30 overflow-hidden">
-          <Building2 size={80} strokeWidth={1.5} className="group-hover:rotate-6 transition-transform duration-700" />
+          <MapPin size={80} strokeWidth={1.5} className="group-hover:rotate-6 transition-transform duration-700" />
         </div>
         
         <div className="text-center z-10">
