@@ -21,7 +21,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
     },
     { 
       id: 'status', 
-      label: type === 'apartments' ? 'وضعية الشقق' : 'وضعية البقع', 
+      label: 'وضعية البقع', 
       icon: MapPin,
       show: true 
     },
@@ -44,7 +44,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
       case 'architecture':
         return <ArchitectureTab />;
       case 'status':
-        return <StatusTab title={type === 'apartments' ? 'وضعية الشقق' : 'وضعية البقع'} />;
+        return <StatusTab title="وضعية البقع" />;
       case 'progress':
         return <ProgressTab />;
       case 'booking':
