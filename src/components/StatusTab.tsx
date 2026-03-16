@@ -10,16 +10,7 @@ const floorPlanImages = [
   '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
 ];
 
-// Mock API response
-const getPlotStatus = async (plotNumber: string) => {
-  // Simulating an API call
-  return new Promise<'available' | 'reserved'>((resolve) => {
-    setTimeout(() => {
-      // Set all plots to available as requested by user
-      resolve('available');
-    }, 100);
-  });
-};
+// Removed getPlotStatus mock as we'll use local list of reserved plots
 
 interface PlotWithStatus extends Plot {
   status: 'available' | 'reserved';
@@ -35,26 +26,30 @@ export default function StatusTab() {
     const initPlots = async () => {
       setLoading(true);
       // Data extracted from site plan image
+      const reservedNumbers = ['5', '8', '9', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
+      
+      const generatePlots = (start: number, end: number, code: string, type: 'residential' | 'commercial', floor: string, category: 'R+2' | 'R+3' | 'R+4'): Plot[] => {
+        return Array.from({ length: end - start + 1 }, (_, i) => i + start).map(n => ({
+          code, number: n.toString(), type, floor, category
+        }));
+      };
+
       const basePlots: Plot[] = [
-        // R+2 Plots (HC2/HE2)
-        ...[33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55].map(n => ({ code: 'HC2', number: n.toString(), type: 'commercial' as const, floor: '2', category: 'R+2' as const })),
-        ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(n => ({ code: 'HE2', number: n.toString(), type: 'residential' as const, floor: '2', category: 'R+2' as const })),
-        
-        // R+3 Plots (HC3/HE3)
-        ...[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30].map(n => ({ code: 'HC3', number: n.toString(), type: 'commercial' as const, floor: '3', category: 'R+3' as const })),
-        ...[40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50].map(n => ({ code: 'HE3', number: n.toString(), type: 'residential' as const, floor: '3', category: 'R+3' as const })),
-        
-        // R+4 Plots (HC4/HE4)
-        ...[60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70].map(n => ({ code: 'HC4', number: n.toString(), type: 'commercial' as const, floor: '4', category: 'R+4' as const })),
-        ...[71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81].map(n => ({ code: 'HE4', number: n.toString(), type: 'residential' as const, floor: '4', category: 'R+4' as const })),
+        ...generatePlots(1, 14, 'HE2', 'residential', '2', 'R+2'),
+        ...generatePlots(15, 28, 'HC2', 'commercial', '2', 'R+2'),
+        ...generatePlots(29, 42, 'HE3', 'residential', '3', 'R+3'),
+        ...generatePlots(43, 56, 'HC3', 'commercial', '3', 'R+3'),
+        ...generatePlots(57, 68, 'HE4', 'residential', '4', 'R+4'),
+        ...generatePlots(69, 80, 'HC4', 'commercial', '4', 'R+4'),
       ];
 
-      const plotsWithStatus = await Promise.all(
-        basePlots.map(async (p) => ({
-          ...p,
-          status: await getPlotStatus(p.number),
-        }))
-      );
+      // Simulate network delay for effect
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      const plotsWithStatus = basePlots.map((p) => ({
+        ...p,
+        status: reservedNumbers.includes(p.number) ? 'reserved' as const : 'available' as const,
+      }));
       
       setPlots(plotsWithStatus);
       setLoading(false);
@@ -86,12 +81,12 @@ export default function StatusTab() {
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-2">
-        <h3 className="text-2xl font-bold text-gray-900">وضعية الشقق</h3>
-        <p className="text-gray-500">مشاهدة المخططات والمواقع الحالية للبقع</p>
+        <h3 className="text-2xl font-bold text-white drop-shadow-md">وضعية الشقق</h3>
+        <p className="text-blue-100">مشاهدة المخططات والمواقع الحالية للبقع</p>
       </div>
 
       {/* Floor Plan Slider - Always Visible */}
-      <div className="relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-2xl group ring-1 ring-black/5 aspect-[16/9] md:aspect-[21/9]">
+      <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-white/20 group ring-1 ring-white/10 aspect-[16/9] md:aspect-[21/9]">
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <img 
             src={floorPlanImages[currentSlideIndex]} 
@@ -132,16 +127,16 @@ export default function StatusTab() {
       </div>
 
       {loading ? (
-        <div className="flex flex-col items-center justify-center p-12 gap-4 bg-gray-50 rounded-[2.5rem] border border-gray-100">
-          <Loader2 size={40} className="text-blue-600 animate-spin" />
-          <p className="text-gray-500 font-medium">جاري تحديث بيانات البقع...</p>
+        <div className="flex flex-col items-center justify-center p-12 gap-4 bg-white/5 backdrop-blur-md rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+          <Loader2 size={40} className="text-blue-400 animate-spin" />
+          <p className="text-blue-100 font-medium">جاري تحديث بيانات البقع...</p>
         </div>
       ) : (
         <>
           <div className="flex flex-col gap-8 pt-4">
             <div className="text-center">
-              <h4 className="text-xl font-bold text-gray-900 mb-2">تصفية البقع حسب الفئة</h4>
-              <p className="text-gray-500">اختر الطابق ونوع البقعة لعرض التفاصيل في الجدول أدناه</p>
+              <h4 className="text-xl font-bold text-white mb-2 drop-shadow-md">تصفية البقع حسب الفئة</h4>
+              <p className="text-blue-100/80">اختر الطابق ونوع البقعة لعرض التفاصيل في الجدول أدناه</p>
             </div>
           </div>
 
@@ -151,10 +146,10 @@ export default function StatusTab() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-8 py-3 rounded-2xl font-black transition-all ${
+                className={`px-8 py-3 rounded-2xl font-black transition-all backdrop-blur-md border ${
                   activeCategory === cat
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
+                    ? 'bg-blue-600/90 text-white shadow-[0_8px_32px_rgba(37,99,235,0.4)] border-blue-500/50'
+                    : 'bg-black/30 text-blue-100 hover:bg-black/50 border-white/10'
                 }`}
               >
                 {cat}
@@ -164,13 +159,13 @@ export default function StatusTab() {
 
           {/* Residential/Commercial Switch */}
           <div className="flex justify-center">
-            <div className="bg-gray-100 p-1.5 rounded-2xl flex gap-2">
+            <div className="bg-black/40 backdrop-blur-xl p-1.5 rounded-2xl flex gap-2 border border-white/10">
               <button
                 onClick={() => setActiveType('residential')}
                 className={`px-8 py-2.5 rounded-xl font-bold transition-all ${
                   activeType === 'residential'
-                    ? 'bg-white text-blue-600 shadow-md'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-white/10 text-white shadow-[0_4px_16px_rgba(0,0,0,0.2)] border border-white/20'
+                    : 'text-blue-200/60 hover:text-white hover:bg-white/5'
                 }`}
               >
                 البقع السكنية
@@ -179,8 +174,8 @@ export default function StatusTab() {
                 onClick={() => setActiveType('commercial')}
                 className={`px-8 py-2.5 rounded-xl font-bold transition-all ${
                   activeType === 'commercial'
-                    ? 'bg-white text-blue-600 shadow-md'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-white/10 text-white shadow-[0_4px_16px_rgba(0,0,0,0.2)] border border-white/20'
+                    : 'text-blue-200/60 hover:text-white hover:bg-white/5'
                 }`}
               >
                 البقع التجارية
@@ -189,34 +184,56 @@ export default function StatusTab() {
           </div>
 
           {/* Plots Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-w-5xl mx-auto">
             {filteredPlots.length > 0 ? (
               filteredPlots.map((plot, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-gray-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center gap-3 text-center"
+                  className={`group border p-4 rounded-3xl transition-all duration-500 flex flex-col items-center gap-3 text-center relative backdrop-blur-3xl hover:-translate-y-2 hover:scale-105 ${
+                    plot.status === 'available'
+                      ? 'bg-emerald-400 border-emerald-300 shadow-[0_20px_40px_rgba(16,185,129,0.2)] hover:shadow-[0_25px_50px_rgba(16,185,129,0.4)]'
+                      : 'bg-red-600 border-red-500 shadow-[0_10px_30px_rgba(220,38,38,0.3)]'
+                  }`}
                 >
-                  <div className="text-xl font-black text-gray-800 flex items-center gap-2">
+                  {plot.status === 'reserved' && (
+                    <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-xl"></span>
+                    </div>
+                  )}
+
+                  <div className={`text-base font-black flex items-center gap-2 ${plot.status === 'available' ? 'text-black' : 'text-white'} drop-shadow-sm`}>
                     <span>{plot.code}</span>
-                    <span className="text-blue-500 text-sm">●</span>
+                    <span className={plot.status === 'available' ? 'text-black/30' : 'text-white/30'}>|</span>
                     <span>{plot.number}</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50">
-                    <div className={`w-2.5 h-2.5 rounded-full ${
-                      plot.status === 'available' ? 'bg-green-500 animate-pulse' : 'bg-red-500'
+                  <div className={`flex items-center gap-2 px-3 py-1 rounded-full w-full justify-center ${plot.status === 'available' ? 'bg-black/10' : 'bg-black/20'}`}>
+                    <div className={`w-2 h-2 rounded-full ${
+                      plot.status === 'available' ? 'bg-black animate-pulse' : 'bg-red-200'
                     }`} />
-                    <span className={`text-xs font-bold ${
-                      plot.status === 'available' ? 'text-green-700' : 'text-red-700'
+                    <span className={`text-xs font-black tracking-wider ${
+                      plot.status === 'available' ? 'text-black' : 'text-red-100'
                     }`}>
                       {plot.status === 'available' ? 'متاحة' : 'محجوزة'}
                     </span>
                   </div>
+
+                  {plot.status === 'available' && (
+                    <a 
+                      href={`https://wa.me/212702060323?text=${encodeURIComponent(`السلام عليكم\nأرغب في حجز البقعة رقم ${plot.number} (${plot.code})`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2 px-3 bg-black text-white text-xs font-black rounded-xl hover:bg-stone-900 transition-all flex items-center justify-center shadow-lg group-hover:animate-bounce mt-1"
+                    >
+                      حجز الآن
+                    </a>
+                  )}
                 </div>
               ))
             ) : (
-              <div className="col-span-full py-20 text-center bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200">
-                <p className="text-gray-400 font-medium">لا توجد بقع متوفرة في هذا القسم حالياً</p>
+              <div className="col-span-full py-20 text-center bg-white/5 backdrop-blur-md rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+                <p className="text-blue-200 font-medium text-lg">لا توجد بقع متوفرة في هذا القسم حالياً</p>
               </div>
             )}
           </div>

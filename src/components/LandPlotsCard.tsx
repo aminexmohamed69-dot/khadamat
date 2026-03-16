@@ -56,13 +56,14 @@ export default function LandPlotsCard() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition duration-300" style={{fontFamily: 'Cairo, sans-serif'}}>
-      <div className="bg-gradient-to-r from-amber-600 to-amber-500 px-8 py-6">
-        <h3 className="text-3xl font-black text-white">البقع الأرضية</h3>
+    <div className="bg-slate-900/60 backdrop-blur-2xl rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden border border-white/10 transition-all duration-500 hover:border-amber-500/30 group" style={{fontFamily: 'Cairo, sans-serif'}}>
+      <div className="bg-gradient-to-r from-amber-600/20 to-amber-500/10 px-10 py-8 backdrop-blur-md border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-amber-500/5 mix-blend-screen opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <h3 className="text-4xl font-black text-white drop-shadow-lg tracking-tight relative z-10">البقع الأرضية</h3>
       </div>
 
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto no-scrollbar">
+      <div className="border-b border-white/5 bg-black/40 overflow-x-auto no-scrollbar">
         <div className="flex px-4">
           {tabs.map((tab) => (
             <button
@@ -70,8 +71,8 @@ export default function LandPlotsCard() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base border-b-3 ${
                 activeTab === tab.id
-                  ? 'text-amber-600 border-amber-600 bg-white'
-                  : 'text-gray-600 border-transparent hover:text-amber-500 hover:bg-gray-100'
+                  ? 'text-white border-amber-400 bg-white/10 shadow-[inset_0_-4px_10px_rgba(251,191,36,0.2)]'
+                  : 'text-blue-100 border-transparent hover:text-white hover:bg-white/5'
               }`}
             >
               {tab.label}
@@ -131,36 +132,38 @@ export default function LandPlotsCard() {
             {activeTab === 'booking' && (
               <>
                 <div className="flex-1 w-full">
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-white mb-3 drop-shadow-md">
                     نوع الطابق
                   </label>
                   <select
                     value={formData.floor}
                     onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
-                    className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+                    className="w-full px-5 py-3 border border-white/20 bg-black/40 text-white rounded-xl focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition font-semibold backdrop-blur-md appearance-none"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'left 1rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em 1.5em' }}
                   >
-                    <option value="R+2">R+2</option>
-                    <option value="R+3">R+3</option>
-                    <option value="R+4">R+4</option>
+                    <option className="bg-gray-800" value="R+2">R+2</option>
+                    <option className="bg-gray-800" value="R+3">R+3</option>
+                    <option className="bg-gray-800" value="R+4">R+4</option>
                   </select>
                 </div>
 
                 <div className="flex-1 w-full">
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-white mb-3 drop-shadow-md">
                     نوع البقعة
                   </label>
                   <select
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                    className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+                    className="w-full px-5 py-3 border border-white/20 bg-black/40 text-white rounded-xl focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition font-semibold backdrop-blur-md appearance-none"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'left 1rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em 1.5em' }}
                   >
-                    <option value="سكنية">سكنية</option>
-                    <option value="تجارية">تجارية</option>
+                    <option className="bg-gray-800" value="سكنية">سكنية</option>
+                    <option className="bg-gray-800" value="تجارية">تجارية</option>
                   </select>
                 </div>
 
                 <div className="flex-1 w-full">
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-white mb-3 drop-shadow-md">
                     رقم البقعة
                   </label>
                   <input
@@ -168,7 +171,7 @@ export default function LandPlotsCard() {
                     value={formData.plotNumber}
                     onChange={(e) => setFormData({ ...formData, plotNumber: e.target.value })}
                     placeholder="أدخل رقم البقعة"
-                    className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition font-semibold"
+                    className="w-full px-5 py-3 border border-white/20 bg-black/40 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition font-semibold backdrop-blur-md"
                   />
                 </div>
               </>
@@ -178,16 +181,16 @@ export default function LandPlotsCard() {
             {activeTab === 'booking' && (
               <button
                 onClick={handleSubmit}
-                className={`bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap px-10 py-3 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}`}
+                className={`flex items-center gap-3 justify-center bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-bold rounded-2xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(245,158,11,0.3)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.5)] border border-amber-400/30 px-12 py-4 text-xl w-full sm:w-auto mx-auto ${!isFormValid ? 'opacity-50 cursor-not-allowed border-none transform-none hover:transform-none shadow-none' : 'animate-in fade-in zoom-in duration-500'}`}
               >
-                تأكيد الحجز
+                <span>تأكيد الحجز</span>
               </button>
             )}
           </div>
 
           {/* Info Message */}
           {activeTab === 'booking' && !isFormValid && (
-            <p className="text-center text-gray-500 text-sm font-medium animate-in fade-in duration-300">
+            <p className="text-center text-blue-200 text-sm font-medium animate-in fade-in duration-300 bg-black/20 py-2 px-4 rounded-full max-w-max mx-auto backdrop-blur-sm border border-white/5">
               يرجى إدخال رقم البقعة لإتمام الحجز
             </p>
           )}

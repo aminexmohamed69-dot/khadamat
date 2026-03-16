@@ -31,14 +31,14 @@ function Gallery({ title, images }: GalleryProps) {
           alt={title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        
+
         <button
           onClick={prev}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all opacity-0 group-hover:opacity-100"
         >
           <ChevronRight size={20} />
         </button>
-        
+
         <button
           onClick={next}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all opacity-0 group-hover:opacity-100"
@@ -50,9 +50,8 @@ function Gallery({ title, images }: GalleryProps) {
           {images.map((_, idx) => (
             <div
               key={idx}
-              className={`w-2 h-2 rounded-full transition-all ${
-                idx === current ? 'bg-white w-4' : 'bg-white/50'
-              }`}
+              className={`w-2 h-2 rounded-full transition-all ${idx === current ? 'bg-white w-4' : 'bg-white/50'
+                }`}
             />
           ))}
         </div>
@@ -63,9 +62,8 @@ function Gallery({ title, images }: GalleryProps) {
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`relative shrink-0 w-24 aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-              idx === current ? 'border-blue-600 scale-105' : 'border-transparent opacity-60'
-            }`}
+            className={`relative shrink-0 w-24 aspect-video rounded-lg overflow-hidden border-2 transition-all ${idx === current ? 'border-blue-600 scale-105' : 'border-transparent opacity-60'
+              }`}
           >
             <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
           </button>

@@ -51,13 +51,14 @@ export default function ApartmentsCard() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 hover:shadow-3xl transition duration-300" style={{fontFamily: 'Cairo, sans-serif'}}>
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-500 px-8 py-6">
-        <h3 className="text-3xl font-black text-white">الشقق السكنية</h3>
+    <div className="bg-slate-900/60 backdrop-blur-2xl rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden border border-white/10 transition-all duration-500 hover:border-emerald-500/30 group" style={{fontFamily: 'Cairo, sans-serif'}}>
+      <div className="bg-gradient-to-r from-emerald-600/20 to-emerald-500/10 px-10 py-8 backdrop-blur-md border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-emerald-500/5 mix-blend-screen opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        <h3 className="text-4xl font-black text-white drop-shadow-lg tracking-tight relative z-10">الشقق السكنية</h3>
       </div>
 
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200 bg-gray-50 overflow-x-auto no-scrollbar">
+      <div className="border-b border-white/5 bg-black/40 overflow-x-auto no-scrollbar">
         <div className="flex px-4">
           {tabs.map((tab) => (
             <button
@@ -65,8 +66,8 @@ export default function ApartmentsCard() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-4 font-bold text-center transition-all duration-300 whitespace-nowrap text-sm lg:text-base border-b-3 ${
                 activeTab === tab.id
-                  ? 'text-emerald-600 border-emerald-600 bg-white'
-                  : 'text-gray-600 border-transparent hover:text-emerald-500 hover:bg-gray-100'
+                  ? 'text-white border-emerald-400 bg-black/40 shadow-[inset_0_-4px_10px_rgba(52,211,153,0.2)]'
+                  : 'text-blue-100/70 border-transparent hover:text-white hover:bg-black/20'
               }`}
             >
               {tab.label}
@@ -126,24 +127,25 @@ export default function ApartmentsCard() {
             {activeTab === 'booking' && (
               <>
                 <div className="flex-1 w-full">
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-white mb-3 drop-shadow-md">
                     الطابق
                   </label>
                   <select
                     value={formData.floor}
                     onChange={(e) => setFormData({ ...formData, floor: e.target.value })}
-                    className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-semibold"
+                    className="w-full px-5 py-3 border border-white/20 bg-black/40 text-white rounded-xl focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition font-semibold backdrop-blur-md appearance-none"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'left 1rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em 1.5em' }}
                   >
-                    <option value="0">0 (الطابق الأرضي)</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option className="bg-gray-800" value="0">0 (الطابق الأرضي)</option>
+                    <option className="bg-gray-800" value="1">1</option>
+                    <option className="bg-gray-800" value="2">2</option>
+                    <option className="bg-gray-800" value="3">3</option>
+                    <option className="bg-gray-800" value="4">4</option>
                   </select>
                 </div>
 
                 <div className="flex-1 w-full">
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
+                  <label className="block text-sm font-bold text-white mb-3 drop-shadow-md">
                     رقم الشقة
                   </label>
                   <input
@@ -151,7 +153,7 @@ export default function ApartmentsCard() {
                     value={formData.apartmentNumber}
                     onChange={(e) => setFormData({ ...formData, apartmentNumber: e.target.value })}
                     placeholder="أدخل رقم الشقة"
-                    className="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition font-semibold"
+                    className="w-full px-5 py-3 border border-white/20 bg-black/40 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition font-semibold backdrop-blur-md"
                   />
                 </div>
               </>
@@ -161,16 +163,16 @@ export default function ApartmentsCard() {
             {activeTab === 'booking' && (
               <button
                 onClick={handleSubmit}
-                className={`bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-xl transition transform hover:scale-110 shadow-lg hover:shadow-xl whitespace-nowrap px-10 py-3 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : 'animate-in fade-in zoom-in duration-500'}`}
+                className={`flex items-center gap-3 justify-center bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold rounded-2xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.5)] border border-emerald-400/30 px-12 py-4 text-xl w-full sm:w-auto mx-auto ${!isFormValid ? 'opacity-50 cursor-not-allowed border-none transform-none hover:transform-none shadow-none' : 'animate-in fade-in zoom-in duration-500'}`}
               >
-                تأكيد الحجز
+                <span>تأكيد الحجز</span>
               </button>
             )}
           </div>
 
           {/* Info Message */}
           {activeTab === 'booking' && !isFormValid && (
-            <p className="text-center text-gray-500 text-sm font-medium animate-in fade-in duration-300">
+            <p className="text-center text-blue-200 text-sm font-medium animate-in fade-in duration-300 bg-black/40 py-2 px-4 rounded-full max-w-max mx-auto backdrop-blur-sm border border-white/10 shadow-inner">
               يرجى إدخال رقم الشقة لإتمام الحجز
             </p>
           )}

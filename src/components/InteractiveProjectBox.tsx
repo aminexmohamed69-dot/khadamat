@@ -26,43 +26,45 @@ export default function InteractiveProjectBox({
   if (!isRevealed) return <div id="other-projects" className="py-12" />;
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white" id="other-projects">
+    <section className="py-24 bg-transparent" id="other-projects">
       <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
         <div id="other-projects-content" className="w-full space-y-12 animate-fadeIn">
           {/* Other Projects Box */}
-          <div className="relative group">
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-blue-400 rounded-[2.5rem] blur-xl opacity-10 group-hover:opacity-20 transition duration-500"></div>
-
-            <div className="relative bg-white rounded-[2.5rem] p-16 shadow-2xl transition duration-500 border border-blue-50">
-              <div className="text-center">
-                <h3 className="text-5xl lg:text-6xl font-black text-blue-600 mb-6 transition relative inline-block">
-                  مشاريع أخرى
-                  <div className="absolute -bottom-4 left-0 right-0 h-1.5 bg-blue-600 rounded-full shadow-sm"></div>
-                </h3>
-                <p className="text-gray-500 text-xl mt-10 font-medium">
-                  استكشف مشاريعنا الأخرى والخدمات المتميزة
-                </p>
+          <div className="max-w-4xl mx-auto group">
+            <div className="relative bg-white/10 backdrop-blur-2xl rounded-[3rem] p-12 lg:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.3)] transition duration-700 border border-white/20 hover:bg-white/15 hover:border-white/30 overflow-hidden">
+              
+              {/* Subtle Ambient Glow */}
+              <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+              
+              <div className="text-center relative z-10 w-full mb-12">
+                <h2 className="text-4xl lg:text-6xl font-black text-white drop-shadow-md mb-6 tracking-tight line-clamp-2 leading-tight" style={{fontFamily: 'Cairo, sans-serif'}}>
+                  مشروع تجزئة وإقامة النجمة
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto rounded-full group-hover:w-48 transition-all duration-700 shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
               </div>
+              <p className="text-blue-100 text-xl mt-10 font-medium text-center relative z-10">
+                استكشف مشاريعنا الأخرى والخدمات المتميزة
+              </p>
             </div>
           </div>
 
           {/* Check Button */}
-          <div className="flex flex-col items-center gap-8">
-            <button
-              onClick={handleClick}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-16 py-4 rounded-full font-bold text-lg transition transform hover:scale-105 hover:shadow-xl shadow-lg"
+          <div className="flex justify-center mt-12 relative z-10">
+            <button 
+              onClick={handleClick} // Changed from onExplore to handleClick
+              className="flex items-center gap-3 bg-gradient-to-r from-blue-600/90 to-indigo-600/90 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(79,70,229,0.4)] hover:shadow-[0_15px_40px_rgba(79,70,229,0.6)] border border-blue-400/30 backdrop-blur-sm group"
             >
-              تحقق
+              <span className="text-xl">استكشف المشروع</span>
+              <ChevronDown className="group-hover:translate-y-1 transition-transform" />
             </button>
-
-            {/* Scroll Down Arrow */}
-            {showArrow && (
-              <div className="animate-bounce flex flex-col items-center gap-2">
-                <span className="text-sm font-semibold text-blue-600">مرر لأسفل</span>
-                <ChevronDown size={32} className="text-blue-600 animate-bounce" style={{ animationDelay: '0.2s' }} />
-              </div>
-            )}
           </div>
+          {/* Scroll Down Arrow */}
+          {showArrow && (
+            <div className="animate-bounce flex flex-col items-center gap-2">
+              <span className="text-sm font-semibold text-white">مرر لأسفل</span>
+              <ChevronDown size={32} className="text-white animate-bounce drop-shadow-md" style={{ animationDelay: '0.2s' }} />
+            </div>
+          )}
         </div>
       </div>
 
