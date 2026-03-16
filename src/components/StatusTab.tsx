@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
-import { parseProjectPdf, Plot } from '../utils/pdfParser';
+import { Plot } from '../utils/pdfParser';
 
 const floorPlanImages = [
   '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
@@ -26,7 +26,7 @@ export default function StatusTab() {
     const initPlots = async () => {
       setLoading(true);
       // Data extracted from site plan image
-      const reservedNumbers = ['5', '8', '9', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
+      const reservedNumbers = ['5', '8', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
       
       const generatePlots = (start: number, end: number, code: string, type: 'residential' | 'commercial', floor: string, category: 'R+2' | 'R+3' | 'R+4'): Plot[] => {
         return Array.from({ length: end - start + 1 }, (_, i) => i + start).map(n => ({
@@ -195,25 +195,23 @@ export default function StatusTab() {
                       : 'bg-red-600 border-red-500 shadow-[0_10px_30px_rgba(220,38,38,0.3)]'
                   }`}
                 >
-                  {plot.status === 'reserved' && (
-                    <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-xl"></span>
-                    </div>
-                  )}
+                  <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-xl"></span>
+                  </div>
 
-                  <div className={`text-base font-black flex items-center gap-2 ${plot.status === 'available' ? 'text-black' : 'text-white'} drop-shadow-sm`}>
+                  <div className="text-base font-black flex items-center gap-2 text-white drop-shadow-sm">
                     <span>{plot.code}</span>
-                    <span className={plot.status === 'available' ? 'text-black/30' : 'text-white/30'}>|</span>
+                    <span className="text-white/30">|</span>
                     <span>{plot.number}</span>
                   </div>
                   
                   <div className={`flex items-center gap-2 px-3 py-1 rounded-full w-full justify-center ${plot.status === 'available' ? 'bg-black/10' : 'bg-black/20'}`}>
                     <div className={`w-2 h-2 rounded-full ${
-                      plot.status === 'available' ? 'bg-black animate-pulse' : 'bg-red-200'
+                      plot.status === 'available' ? 'bg-white animate-pulse' : 'bg-red-200'
                     }`} />
                     <span className={`text-xs font-black tracking-wider ${
-                      plot.status === 'available' ? 'text-black' : 'text-red-100'
+                      plot.status === 'available' ? 'text-white' : 'text-red-100'
                     }`}>
                       {plot.status === 'available' ? 'متاحة' : 'محجوزة'}
                     </span>
