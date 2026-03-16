@@ -3,11 +3,11 @@ import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Plot } from '../utils/pdfParser';
 
 const floorPlanImages = [
-  '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
-  '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
-  '/75c59f40-7d77-4836-b9f0-0b6cebbe2b65.jpg',
-  '/376b81f7-6ef7-42cf-a612-bdcfa1bfa2e0.jpg',
-  '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
+  '/plan-rdc-new.jpg',
+  '/plan-1ere-new.jpg',
+  '/plan-2ere-new.jpg',
+  '/plan-3eme-new.jpg',
+  '/plan-4eme-new.jpg'
 ];
 
 // Removed getPlotStatus mock as we'll use local list of reserved plots
