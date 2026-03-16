@@ -6,7 +6,7 @@ const images = [
   '/plan-1ere-new.jpg',
   '/plan-3eme-new.jpg',
   '/plan-4eme-new.jpg',
-  '/plan-plot-map.jpg'
+  '/plan-2ere-new.jpg'
 ];
 
 export default function ArchitectureTab() {
