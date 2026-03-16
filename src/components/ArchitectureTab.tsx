@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  '/media__1773619625070.jpg', // Rez de chaussée
-  '/media__1773619625114.jpg', // 1ere ETAGE
-  '/media__1773619628209.jpg', // 3eme ETAGE
-  '/media__1773619628250.jpg', // 4eme ETAGE
-  '/media__1773619620985.jpg'  // Detailed Plot Map (Rue No 48)
+  '/plan-rdc-new.jpg',
+  '/plan-1ere-new.jpg',
+  '/plan-3eme-new.jpg',
+  '/plan-4eme-new.jpg',
+  '/plan-plot-map.jpg'
 ];
 
 export default function ArchitectureTab() {
@@ -88,26 +88,6 @@ export default function ArchitectureTab() {
             />
           ))}
         </div>
-      </div>
-
-      {/* New Grid Gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {images.map((img, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedImage(img)}
-            className="group relative aspect-video overflow-hidden rounded-[2rem] shadow-2xl transition-all duration-700 cursor-pointer border border-white/10 hover:border-blue-400/50 hover:scale-[1.02]"
-          >
-            <img
-              src={img}
-              alt={`Architecture plan ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <p className="text-white font-bold text-lg">عرض المخطط بالحجم الكامل</p>
-            </div>
-          </div>
-        ))}
       </div>
 
       {/* Full Screen Image Modal */}
