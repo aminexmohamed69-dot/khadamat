@@ -24,9 +24,6 @@ export default function ArchitectureTab({ type }: { type?: 'apartments' | 'land'
     <div className="w-full h-full min-h-[500px] flex flex-col gap-10 animate-fadeIn">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="space-y-2 text-center md:text-right">
-          <h3 className="text-3xl font-black text-white tracking-tight leading-tight">
-            {type === 'land' ? 'تصميم التجزئة' : 'تصميم العمارة'}
-          </h3>
           <p className="text-blue-100/60 font-medium font-Cairo">مشاهدة المخطط الكامل للمشروع ({currentIndex + 1} / {images.length})</p>
         </div>
         

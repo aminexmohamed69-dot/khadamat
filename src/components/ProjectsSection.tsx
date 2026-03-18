@@ -37,7 +37,7 @@ export default function ProjectsSection({
             {/* Ambient Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-blue-500/20 blur-3xl rounded-full pointer-events-none"></div>
 
-            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-1 rounded-full text-xs font-black shadow-lg tracking-widest relative z-10">
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-full text-lg font-black shadow-lg tracking-widest relative z-10">
               جديد
             </div>
 

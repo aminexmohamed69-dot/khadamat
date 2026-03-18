@@ -19,8 +19,8 @@ export default function MainOptions({ onSelect }: MainOptionsProps) {
         </div>
         
         <div className="text-center z-10">
-          <h3 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-md" style={{fontFamily: 'Cairo, sans-serif'}}>الشقق السكنية</h3>
-          <p className="text-blue-100 text-xl lg:text-2xl font-medium max-w-[300px] leading-relaxed" style={{fontFamily: 'Tajawal, sans-serif'}}>استكشف الشقق السكنية الفاخرة المتاحة وتفاصيلها</p>
+          <h3 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-md" style={{fontFamily: 'Cairo, sans-serif'}}>البقع الأرضية</h3>
+          <p className="text-blue-100 text-xl lg:text-2xl font-medium max-w-[300px] leading-relaxed" style={{fontFamily: 'Tajawal, sans-serif'}}>استكشف البقع الأرضية المتوفرة ومواقعها الاستراتيجية</p>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-blue-600 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
@@ -38,8 +38,8 @@ export default function MainOptions({ onSelect }: MainOptionsProps) {
         </div>
         
         <div className="text-center z-10">
-          <h3 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-md" style={{fontFamily: 'Cairo, sans-serif'}}>البقع الأرضية</h3>
-          <p className="text-orange-100/90 text-xl lg:text-2xl font-medium max-w-[300px] leading-relaxed" style={{fontFamily: 'Tajawal, sans-serif'}}>استكشف البقع الأرضية المتوفرة ومواقعها الاستراتيجية</p>
+          <h3 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-md" style={{fontFamily: 'Cairo, sans-serif'}}>الشقق السكنية</h3>
+          <p className="text-orange-100/90 text-xl lg:text-2xl font-medium max-w-[300px] leading-relaxed" style={{fontFamily: 'Tajawal, sans-serif'}}>استكشف الشقق السكنية الفاخرة المتاحة وتفاصيلها</p>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-orange-500 to-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>

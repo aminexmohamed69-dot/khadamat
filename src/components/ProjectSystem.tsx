@@ -15,13 +15,13 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
   const tabs = [
     { 
       id: 'architecture', 
-      label: type === 'apartments' ? 'تصميم العمارة' : 'تصميم التجزئة', 
+      label: type === 'apartments' ? 'تصميم التجزءة' : 'تصميم العمارة', 
       icon: Layout,
       show: true 
     },
     { 
       id: 'status', 
-      label: 'وضعية البقع', 
+      label: type === 'apartments' ? 'وضعية البقع' : 'وضعية الشقق', 
       icon: MapPin,
       show: true 
     },
@@ -33,7 +33,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
     },
     { 
       id: 'booking', 
-      label: type === 'apartments' ? 'حجز شقة' : 'حجز بقعة', 
+      label: 'حجز بقعة', 
       icon: CalendarCheck,
       show: true 
     },
@@ -44,6 +44,8 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
       case 'architecture':
         return <ArchitectureTab type={type} />;
       case 'status':
+        // If Orange Card (land type), show Coming Soon
+        // If Blue Card (apartments type), show StatusTab
         return type === 'land' ? (
           <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
             <div className="w-24 h-24 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 border border-blue-500/20">
@@ -54,25 +56,9 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
           </div>
         ) : <StatusTab title="وضعية البقع" />;
       case 'progress':
-        return type === 'land' ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
-            <div className="w-24 h-24 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 border border-blue-500/20">
-              <Construction size={48} />
-            </div>
-            <h3 className="text-4xl font-black text-white">قريباً</h3>
-            <p className="text-blue-100/60 text-lg">نحن نعمل على تجهيز هذا القسم، ترقبوا التحديث القادم.</p>
-          </div>
-        ) : <ProgressTab />;
+        return <ProgressTab />;
       case 'booking':
-        return type === 'land' ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
-            <div className="w-24 h-24 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 border border-blue-500/20">
-              <CalendarCheck size={48} />
-            </div>
-            <h3 className="text-4xl font-black text-white">قريباً</h3>
-            <p className="text-blue-100/60 text-lg">نحن نعمل على تجهيز هذا القسم، ترقبوا التحديث القادم.</p>
-          </div>
-        ) : <BookingTab type={type} />;
+        return <BookingTab />;
       default:
         return null;
     }

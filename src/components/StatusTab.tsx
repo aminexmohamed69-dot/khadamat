@@ -10,8 +10,6 @@ const floorPlanImages = [
   '/3d6e4c86-ffaa-489b-b6b1-95d70af6f989.jpg'
 ];
 
-// Removed getPlotStatus mock as we'll use local list of reserved plots
-
 interface PlotWithStatus extends Plot {
   status: 'available' | 'reserved';
 }
@@ -22,10 +20,10 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
   const [activeCategory, setActiveCategory] = useState<'R+2' | 'R+3' | 'R+4'>('R+2');
   const [activeType, setActiveType] = useState<'residential' | 'commercial'>('residential');
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
   useEffect(() => {
     const initPlots = async () => {
       setLoading(true);
-      // Data extracted from site plan image
       const reservedNumbers = ['5', '8', '9', '16', '17', '35', '36', '39', '40', '46', '48', '52', '61', '80'];
       
       const generatePlotsFromList = (numbers: number[], code: string, type: 'residential' | 'commercial', floor: string, category: 'R+2' | 'R+3' | 'R+4'): Plot[] => {
@@ -35,21 +33,13 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
       };
 
       const basePlots: Plot[] = [
-        // R+2 Residential
         ...generatePlotsFromList([1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 34, 35, 37, 38, 43, 44, 45, 46, 48], 'HE2', 'residential', '2', 'R+2'),
-        // R+2 Commercial
         ...generatePlotsFromList([8, 9, 18, 19, 32, 33, 36, 39, 40, 41, 42, 47, 49, 50, 51, 52], 'HC2', 'commercial', '2', 'R+2'),
-        // R+3 Residential (empty but keeping the structure if needed)
-        
-        // R+3 Commercial
         ...generatePlotsFromList([20, 21, 22, 23, 24, 25, 26, 27, 53, 54, 55, 56, 57, 58, 59], 'HC3', 'commercial', '3', 'R+3'),
-        // R+4 Residential
         ...generatePlotsFromList([30], 'HE4', 'residential', '4', 'R+4'),
-        // R+4 Commercial
         ...generatePlotsFromList([28, 29, 31, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 'HC4', 'commercial', '4', 'R+4'),
       ];
 
-      // Simulate network delay for effect
       await new Promise(resolve => setTimeout(resolve, 300));
 
       const plotsWithStatus = basePlots.map((p) => ({
@@ -81,7 +71,7 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
     'الطابق الرابع (4ème)',
     'الطابق الثالث (3ème)',
     'الطابق الأول (1ère)',
-    'الطابق الأرضي (RDC)'
+    'مشروع تجزئة وإقامة النجمة'
   ];
 
   return (
@@ -91,7 +81,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
         <p className="text-blue-100">مشاهدة المخططات والمواقع الحالية للبقع</p>
       </div>
 
-      {/* Floor Plan Slider - Always Visible */}
       <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-white/20 group ring-1 ring-white/10 aspect-[16/9] md:aspect-[21/9]">
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <img 
@@ -101,7 +90,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
           />
         </div>
 
-        {/* Navigation Arrows */}
         <div className="absolute inset-0 flex items-center justify-between px-2 md:px-8 pointer-events-none z-30">
           <button 
             onClick={handlePrevSlide}
@@ -118,7 +106,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
           </button>
         </div>
 
-        {/* Dots Indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {floorPlanImages.map((_, idx) => (
             <button
@@ -146,7 +133,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
             </div>
           </div>
 
-          {/* R+ Tabs */}
           <div className="flex justify-center gap-6">
             {(['R+2', 'R+3', 'R+4'] as const).map((cat) => (
               <button
@@ -163,7 +149,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
             ))}
           </div>
 
-          {/* Residential/Commercial Switch */}
           <div className="flex justify-center">
             <div className="bg-black/40 backdrop-blur-xl p-1.5 rounded-2xl flex gap-2 border border-white/10">
               <button
@@ -189,7 +174,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
             </div>
           </div>
 
-          {/* Plots Grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-w-5xl mx-auto">
             {filteredPlots.length > 0 ? (
               filteredPlots.map((plot, idx) => (

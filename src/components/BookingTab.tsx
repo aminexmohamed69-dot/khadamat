@@ -1,24 +1,23 @@
 import { useState } from 'react';
 
 
-export default function BookingTab({ type = 'apartments' }: { type?: 'apartments' | 'land' }) {
+export default function BookingTab() {
   const [floor, setFloor] = useState('1');
   const [apartmentNumber, setApartmentNumber] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent default form submission behavior
-    const label = type === 'apartments' ? 'الشقة' : 'البقعة';
-    alert(`تم إرسال طلب الحجز: الطبق ${floor}، رقم ${label} ${apartmentNumber}`);
+    alert(`تم إرسال طلب الحجز: الطبق ${floor}، رقم البقعة ${apartmentNumber}`);
   };
 
   return (
     <div className="space-y-12 animate-fadeIn py-10">
       <div className="text-center space-y-4">
         <h3 className="text-4xl font-black text-white drop-shadow-xl tracking-tight">
-          {type === 'apartments' ? 'حجز شقة' : 'حجز بقعة'}
+          حجز بقعة
         </h3>
         <p className="text-blue-100/60 font-medium text-lg">
-          {type === 'apartments' ? 'يرجى إدخال تفاصيل الشقة لإتمام الحجز' : 'يرجى إدخال تفاصيل البقعة لإتمام الحجز'}
+          يرجى إدخال تفاصيل البقعة لإتمام الحجز
         </p>
       </div>
 
@@ -32,6 +31,7 @@ export default function BookingTab({ type = 'apartments' }: { type?: 'apartments
                 onChange={(e) => setFloor(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 text-white rounded-[1.5rem] px-6 py-4 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300 appearance-none font-bold text-lg backdrop-blur-xl"
               >
+                <option value="0">الطابق الأرضي (RDC)</option>
                 <option value="1">الطابق الأول (R+1)</option>
                 <option value="2">الطابق الثاني (R+2)</option>
                 <option value="3">الطابق الثالث (R+3)</option>
@@ -45,7 +45,7 @@ export default function BookingTab({ type = 'apartments' }: { type?: 'apartments
 
           <div className="space-y-4">
             <label className="block text-lg font-bold text-white px-2">
-              {type === 'apartments' ? 'رقم الشقة' : 'رقم البقعة'}
+              رقم البقعة
             </label>
             <input
               type="text"
