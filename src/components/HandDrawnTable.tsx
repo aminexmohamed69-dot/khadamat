@@ -39,26 +39,28 @@ const isReserved = (building: Building, floorKey: string, aptNum: number): boole
 
 const buildingData: Record<Building, FloorData[]> = {
   A: [
+    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2] },
     { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2] },
     { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2] },
     { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2] },
     { id: 4, label: 'الطابق الرابع', floorKey: '4eme', apartments: [1, 2] },
   ],
   B: [
-    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2] },
-    { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2] },
-    { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2] },
-    { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2] },
-    { id: 4, label: 'الطابق الرابع', floorKey: '4eme', apartments: [1, 2] },
+    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2, 3, 4, 5] },
+    { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2, 3, 4, 5] },
+    { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2, 3, 4, 5] },
+    { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2, 3, 4, 5] },
+    { id: 4, label: 'الطابق الرابع', floorKey: '4eme', apartments: [1, 2, 3, 4, 5] },
   ],
   C: [
-    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2] },
-    { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2] },
-    { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2] },
-    { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2] },
-    { id: 4, label: 'الطابق الرابع', floorKey: '4eme', apartments: [1, 2] },
+    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2, 3, 4, 5] },
+    { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2, 3, 4, 5] },
+    { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2, 3, 4, 5] },
+    { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2, 3, 4, 5] },
+    { id: 4, label: 'الطابق الرابع', floorKey: '4eme', apartments: [1, 2, 3, 4, 5] },
   ],
   D: [
+    { id: 0, label: 'الطابق الأرضي', floorKey: 'rdc',  apartments: [1, 2] },
     { id: 1, label: 'الطابق الأول',  floorKey: '1er',  apartments: [1, 2] },
     { id: 2, label: 'الطابق الثاني', floorKey: '2eme', apartments: [1, 2] },
     { id: 3, label: 'الطابق الثالث', floorKey: '3eme', apartments: [1, 2] },
