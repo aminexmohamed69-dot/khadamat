@@ -24,8 +24,9 @@ const reservedApartments: Record<string, Record<string, number[]>> = {
   },
   C: {
     'rdc': [2],
-    '2eme': [2],
+    '2eme': [2, 4],
     '3eme': [1],
+    '4eme': [4],
   },
   D: {
     '2eme': [2],
