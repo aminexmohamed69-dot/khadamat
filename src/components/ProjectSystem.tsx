@@ -4,6 +4,7 @@ import ArchitectureTab from './ArchitectureTab';
 import StatusTab from './StatusTab';
 import ProgressTab from './ProgressTab';
 import BookingTab from './BookingTab';
+import HandDrawnTable from './HandDrawnTable';
 
 interface ProjectSystemProps {
   type: 'apartments' | 'land';
@@ -45,15 +46,9 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
         return <ArchitectureTab type={type} />;
       case 'status':
         // If Orange Card (land type), show Coming Soon
-        // If Blue Card (apartments type), show StatusTab
+        // If Blue Card (apartments type), show HandDrawnTable
         return type === 'land' ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
-            <div className="w-24 h-24 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 border border-blue-500/20">
-              <MapPin size={48} />
-            </div>
-            <h3 className="text-4xl font-black text-white">قريباً</h3>
-            <p className="text-blue-100/60 text-lg">نحن نعمل على تجهيز هذا القسم، ترقبوا التحديث القادم.</p>
-          </div>
+          <HandDrawnTable />
         ) : <StatusTab title="وضعية البقع" />;
       case 'progress':
         return <ProgressTab />;

@@ -78,45 +78,6 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
     <div className="space-y-12">
       <div className="flex flex-col gap-2">
         <h3 className="text-2xl font-bold text-white drop-shadow-md">{title}</h3>
-        <p className="text-blue-100">مشاهدة المخططات والمواقع الحالية للبقع</p>
-      </div>
-
-      <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-white/20 group ring-1 ring-white/10 aspect-[16/9] md:aspect-[21/9]">
-        <div className="absolute inset-0 flex items-center justify-center p-4">
-          <img 
-            src={floorPlanImages[currentSlideIndex]} 
-            alt={floorLabels[currentSlideIndex]}
-            className="max-w-full max-h-full object-contain transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-[1.02]"
-          />
-        </div>
-
-        <div className="absolute inset-0 flex items-center justify-between px-2 md:px-8 pointer-events-none z-30">
-          <button 
-            onClick={handlePrevSlide}
-            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 border border-gray-100/50"
-          >
-            <ChevronLeft size={24} className="md:w-7 md:h-7" />
-          </button>
-          
-          <button 
-            onClick={handleNextSlide}
-            className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 bg-white/80 md:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 shadow-xl hover:bg-white hover:scale-110 active:scale-95 transition-all opacity-100 border border-gray-100/50"
-          >
-            <ChevronRight size={24} className="md:w-7 md:h-7" />
-          </button>
-        </div>
-
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {floorPlanImages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlideIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentSlideIndex ? 'w-8 bg-blue-600' : 'w-2 bg-gray-300 hover:bg-gray-400'
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
       {loading ? (
