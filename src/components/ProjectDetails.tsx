@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import MainOptions from './MainOptions';
 import ProjectSystem from './ProjectSystem';
-import ApartmentStatus from './HandDrawnTable';
 
 export default function ProjectDetails({ onBack }: { onBack?: () => void }) {
   const [view, setView] = useState<'selection' | 'apartments' | 'land'>('selection');
@@ -40,9 +39,7 @@ export default function ProjectDetails({ onBack }: { onBack?: () => void }) {
           )}
 
           {view === 'land' && (
-            <div className="w-full animate-fadeIn">
-              <ApartmentStatus />
-            </div>
+            <ProjectSystem type="land" />
           )}
           {view === 'apartments' && (
             <ProjectSystem type="apartments" />
