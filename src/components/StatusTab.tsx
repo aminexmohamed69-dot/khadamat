@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Plot } from '../utils/pdfParser';
+import PlotsTable from './PlotsTable';
 const floorPlanImages = [
   '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
   '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',
@@ -241,6 +242,10 @@ export default function StatusTab({ title = 'وضعية البقع' }: { title?:
                 <p className="text-blue-200 font-medium text-lg">لا توجد بقع متوفرة في هذا القسم حالياً</p>
               </div>
             )}
+          </div>
+
+          <div className="mt-20 pt-10 border-t border-white/10 mb-20">
+            <PlotsTable />
           </div>
         </>
       )}
