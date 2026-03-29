@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Plot } from '../utils/pdfParser';
-
 const floorPlanImages = [
   '/8b031074-8b99-44d7-a664-73b449f0666e.jpg',
   '/0ed97443-d755-48ff-bd3d-41a5c5fc587a.jpg',

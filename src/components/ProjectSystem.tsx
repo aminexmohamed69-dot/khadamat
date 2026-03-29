@@ -4,6 +4,7 @@ import ArchitectureTab from './ArchitectureTab';
 import StatusTab from './StatusTab';
 import ProgressTab from './ProgressTab';
 import BookingTab from './BookingTab';
+import ApartmentStatus from './HandDrawnTable';
 
 interface ProjectSystemProps {
   type: 'apartments' | 'land';
@@ -21,7 +22,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
     },
     { 
       id: 'status', 
-      label: 'وضعية البقع', 
+      label: type === 'apartments' ? 'وضعية الشقق' : 'وضعية البقع', 
       icon: MapPin,
       show: true 
     },
@@ -44,7 +45,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
       case 'architecture':
         return <ArchitectureTab />;
       case 'status':
-        return <StatusTab title="وضعية البقع" />;
+        return type === 'apartments' ? <ApartmentStatus /> : <StatusTab title="وضعية البقع" />;
       case 'progress':
         return <ProgressTab />;
       case 'booking':
