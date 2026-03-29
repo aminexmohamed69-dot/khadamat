@@ -42,7 +42,7 @@ export default function ProjectSystem({ type }: ProjectSystemProps) {
   const renderContent = () => {
     switch (activeTab) {
       case 'architecture':
-        return <ArchitectureTab />;
+        return <ArchitectureTab type={type} />;
       case 'status':
         return <StatusTab title="وضعية البقع" />;
       case 'progress':

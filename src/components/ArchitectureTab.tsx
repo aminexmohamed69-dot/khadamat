@@ -9,7 +9,7 @@ const images = [
   '/plan-2ere-new.jpg'
 ];
 
-export default function ArchitectureTab() {
+export default function ArchitectureTab({ type = 'apartments' }: { type?: 'apartments' | 'land' }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null); // New state for selected image
 
@@ -25,8 +25,8 @@ export default function ArchitectureTab() {
     <div className="w-full h-full min-h-[500px] flex flex-col gap-10 animate-fadeIn">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="space-y-2 text-center md:text-right">
-          <h3 className="text-3xl font-black text-white tracking-tight leading-tight">تصميم العمارة</h3>
-          <p className="text-blue-100/60 font-medium font-Cairo">مشاهدة المخطط الكامل للمشروع ({currentIndex + 1} / {images.length})</p>
+          <h3 className="text-3xl font-black text-white tracking-tight leading-tight">{type === 'land' ? 'تصميم التجزئة' : 'تصميم العمارة'}</h3>
+          <p className="text-blue-100/60 font-medium font-Cairo">مشاهدة المخططات ({currentIndex + 1} / {images.length})</p>
         </div>
         
         <div className="bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-2xl shadow-lg">
@@ -34,7 +34,8 @@ export default function ArchitectureTab() {
         </div>
       </div>
 
-      {/* Embedded PDF Viewer */}
+      {/* Embedded PDF Viewer - Apartments only */}
+      {type === 'apartments' && (
       <div className="w-full h-[600px] rounded-3xl overflow-hidden border border-gray-100 shadow-xl bg-gray-50">
         <iframe
           src="/plan.pdf#view=FitH"
@@ -42,6 +43,7 @@ export default function ArchitectureTab() {
           title="Project Plan PDF"
         />
       </div>
+      )}
 
       <div className="flex flex-col gap-4 mt-4">
         <h4 className="text-xl font-bold text-gray-900">معرض الصور</h4>
